@@ -3,102 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aram & Partner | Luxury AI Web Agency</title>
+    <title>Aram & Partner | Elite AI Web Design</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root { --bg-color: #F4F4F4; }
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #fffafa; /* Snow Color */
+            background-color: var(--bg-color); 
             color: #1a1a1a; 
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
+        
+        /* Spotlight Effect */
+        #spotlight {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            background: radial-gradient(circle 150px at var(--x, 0) var(--y, 0), rgba(0,0,0,0.03), transparent 80%);
+        }
+
+        /* Fade-in Animation Classes */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
         .gradient-text { 
-            background: linear-gradient(90deg, #1a1a1a, #4a4a4a); 
+            background: linear-gradient(90deg, #1a1a1a, #666); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
         }
-        .cta-shadow { box-shadow: 0 50px 100px -20px rgba(0,0,0,0.15); }
+
+        .luxury-card { 
+            background: white;
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .luxury-card:hover { 
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <nav class="fixed top-0 w-full z-50 bg-[#fffafa]/80 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
-            <div class="text-xl font-bold tracking-tighter uppercase italic">Aram <span class="font-light text-gray-400">& Partner</span></div>
-            <div class="hidden md:flex space-x-10 text-xs font-bold uppercase tracking-widest text-gray-500">
-                <a href="#services" class="hover:text-black transition">Services</a>
-                <a href="#work" class="hover:text-black transition">Portfolio</a>
-                <a href="#contact" class="hover:text-black transition">Contact</a>
-            </div>
-            <button class="bg-black text-white px-8 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition">Get Started</button>
+    <div id="spotlight"></div>
+
+    <nav class="fixed top-0 w-full z-50 bg-[#F4F4F4]/70 backdrop-blur-xl border-b border-gray-200/50">
+        <div class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tighter uppercase italic">Aram <span class="font-light text-gray-400">& Partner</span></div>
+            <button class="bg-black text-white px-8 py-3 rounded-2xl text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition transform hover:scale-105">Start Your Blueprint</button>
         </div>
     </nav>
 
-    <header class="pt-40 pb-20 px-8 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="text-left">
-                <div class="inline-block px-4 py-1.5 mb-8 text-[10px] font-bold tracking-[0.2em] uppercase bg-gray-200/50 rounded-full text-gray-600">
-                    Based in Monaghan • Established 2026
-                </div>
-                <h1 class="text-6xl md:text-7xl font-bold tracking-tighter leading-[1.1] mb-8 gradient-text">
-                    Digital Excellence <br>Orchestrated.
-                </h1>
-                <p class="text-lg text-gray-500 font-light mb-12 max-w-lg leading-relaxed">
-                    We transcend standard web design. By merging 15 years of elite service with cutting-edge AI, we build high-performance luxury assets for your business.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <button class="bg-black text-white px-10 py-5 rounded-2xl font-bold text-sm hover:scale-105 transition shadow-xl">Start Your Project</button>
-                    <button class="border border-gray-200 px-10 py-5 rounded-2xl font-bold text-sm hover:bg-white transition">View Case Studies</button>
-                </div>
-            </div>
-
-            <div class="relative">
-                <div class="absolute -top-10 -left-10 w-40 h-40 bg-gray-200/30 rounded-full blur-3xl"></div>
-                <img src="https://images.pexels.com/photos/3183186/pexels-photo-3183186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-                     alt="Modern Office Design" 
-                     class="rounded-[2.5rem] cta-shadow w-full object-cover h-[500px] relative z-10">
-                <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl z-20 hidden md:block border border-gray-50">
-                    <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-1">Success Rate</p>
-                    <p class="text-2xl font-bold text-black italic">100% Guaranteed</p>
-                </div>
-            </div>
+    <header class="pt-52 pb-32 px-8 max-w-7xl mx-auto text-center reveal">
+        <div class="inline-block px-6 py-2 mb-10 text-[10px] font-bold tracking-[0.3em] uppercase bg-white rounded-full shadow-sm text-gray-500">
+            Monaghan, Ireland • Premier AI Agency
         </div>
+        <h1 class="text-6xl md:text-9xl font-bold tracking-tighter leading-none mb-10 gradient-text">
+            Precision <br>Design.
+        </h1>
+        <p class="text-xl text-gray-500 font-light mb-16 max-w-2xl mx-auto leading-relaxed">
+            Where 15 years of world-class service meets the cutting edge of AI automation. We don't just build websites; we build digital landmarks.
+        </p>
+        <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260" 
+             class="w-full h-[600px] object-cover rounded-[3rem] shadow-2xl mb-20 reveal">
     </header>
 
-    <section id="services" class="max-w-7xl mx-auto px-8 py-32 border-t border-gray-100">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
-            <div class="space-y-4">
-                <div class="text-sm font-bold text-black tracking-tighter uppercase underline decoration-2 decoration-gray-200 underline-offset-8">01. Efficiency</div>
-                <p class="text-gray-500 font-light leading-relaxed">AI-driven development ensures your site is live in days, with code that is cleaner and faster than traditional builds.</p>
+    <section class="max-w-7xl mx-auto px-8 py-32 reveal">
+        <div class="flex justify-between items-end mb-16">
+            <div>
+                <p class="text-xs font-bold uppercase tracking-[0.4em] text-gray-400 mb-4">Latest Work</p>
+                <h2 class="text-5xl font-bold tracking-tighter italic">The Grooming Room No. 1</h2>
             </div>
-            <div class="space-y-4">
-                <div class="text-sm font-bold text-black tracking-tighter uppercase underline decoration-2 decoration-gray-200 underline-offset-8">02. Luxury</div>
-                <p class="text-gray-500 font-light leading-relaxed">Bespoke design for high-end brands. We don't use templates; we create digital identities from the ground up.</p>
-            </div>
-            <div class="space-y-4">
-                <div class="text-sm font-bold text-black tracking-tighter uppercase underline decoration-2 decoration-gray-200 underline-offset-8">03. Support</div>
-                <p class="text-gray-500 font-light leading-relaxed">Human-first approach. With 15 years of service experience, we treat your business like it's our own.</p>
+            <a href="#" class="text-sm font-bold underline underline-offset-8 decoration-gray-300 hover:decoration-black transition">View Full Portfolio</a>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center luxury-card p-12 rounded-[3rem]">
+            <img src="https://images.pexels.com/photos/1319461/pexels-photo-1319461.jpeg?auto=compress&cs=tinysrgb&w=800" class="rounded-2xl shadow-lg">
+            <div class="space-y-6">
+                <h3 class="text-2xl font-bold italic underline decoration-gray-200 underline-offset-8">Luxury Barber Identity</h3>
+                <p class="text-gray-500 font-light leading-relaxed">A dark, moody, and sophisticated digital storefront designed to reflect 15 years of mastery. Features high-conversion booking systems and bespoke UI.</p>
+                <div class="flex gap-4">
+                    <span class="px-4 py-1 bg-gray-100 rounded-full text-[10px] uppercase font-bold text-gray-400 tracking-widest">Dark Mode</span>
+                    <span class="px-4 py-1 bg-gray-100 rounded-full text-[10px] uppercase font-bold text-gray-400 tracking-widest">High Conversion</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer id="contact" class="bg-white border-t border-gray-100 mt-20 px-8 py-20">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-            <div class="text-left">
-                <div class="text-xl font-bold tracking-tighter uppercase italic mb-4">Aram <span class="font-light text-gray-400">& Partner</span></div>
-                <p class="text-gray-400 text-sm font-light max-w-xs uppercase tracking-widest">Building the future from <br>Monaghan, Ireland.</p>
+    <section class="max-w-7xl mx-auto px-8 py-32 bg-white rounded-[4rem] my-20 shadow-sm reveal">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div class="p-4">
+                <div class="text-4xl mb-6">🧠</div>
+                <h4 class="text-lg font-bold mb-4 uppercase tracking-tighter">The AI Blueprint</h4>
+                <p class="text-gray-500 font-light text-sm">We use proprietary AI orchestration to generate clean, scalable code that beats standard developers on speed and SEO.</p>
             </div>
-            <div class="flex flex-col items-center md:items-end">
-                <div class="flex space-x-8 mb-8 text-xs font-bold uppercase tracking-[0.2em] text-gray-400">
-                    <a href="#" class="hover:text-black">LinkedIn</a>
-                    <a href="#" class="hover:text-black">X</a>
-                    <a href="#" class="hover:text-black">Instagram</a>
-                </div>
-                <p class="text-gray-300 text-[10px] uppercase tracking-widest">© 2026 Aram & Partner. All Rights Reserved.</p>
+            <div class="p-4">
+                <div class="text-4xl mb-6">💈</div>
+                <h4 class="text-lg font-bold mb-4 uppercase tracking-tighter">The Service Soul</h4>
+                <p class="text-gray-500 font-light text-sm">Rooted in 15 years of service. We handle every client with the care and precision of a master barber.</p>
+            </div>
+            <div class="p-4">
+                <div class="text-4xl mb-6">⚡</div>
+                <h4 class="text-lg font-bold mb-4 uppercase tracking-tighter">The Speed Factor</h4>
+                <p class="text-gray-500 font-light text-sm">Launch your dream business in days. Our workflow is optimized for founders who need momentum now.</p>
             </div>
         </div>
+    </section>
+
+    <footer class="py-20 text-center opacity-50">
+        <p class="text-[10px] font-bold uppercase tracking-[0.8em]">Aram & Partner • Monaghan • 2026</p>
     </footer>
 
+    <script>
+        // Spotlight Movement
+        const spotlight = document.getElementById('spotlight');
+        window.addEventListener('mousemove', e => {
+            spotlight.style.setProperty('--x', e.clientX + 'px');
+            spotlight.style.setProperty('--y', e.clientY + 'px');
+        });
+
+        // Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
