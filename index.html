@@ -52,6 +52,13 @@
     </nav>
 
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-white z-[105] opacity-0 invisible flex flex-col items-center justify-center space-y-10 text-center transition-all duration-500">
+        <button id="close-menu-btn" class="absolute top-8 right-8 z-[110] p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-black">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+
         <a href="#services" class="mobile-link text-3xl font-bold tracking-tighter italic">Services</a>
         <a href="#work" class="mobile-link text-3xl font-bold tracking-tighter italic">Portfolio</a>
         <a href="#contact" class="mobile-link text-3xl font-bold tracking-tighter italic">Contact</a>
@@ -189,21 +196,27 @@
             document.body.style.setProperty('--x', e.clientX + 'px'); document.body.style.setProperty('--y', e.clientY + 'px');
         });
 
-        // REFINED MOBILE MENU LOGIC
+        // REFINED MOBILE MENU LOGIC WITH CLOSE BUTTON
         const burgerBtn = document.getElementById('burger-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
         const menuOverlay = document.getElementById('mobile-menu-overlay');
         const mobileLinks = document.querySelectorAll('.mobile-link');
-        burgerBtn.addEventListener('click', () => {
-            const isOpen = menuOverlay.classList.contains('visible');
-            burgerBtn.classList.toggle('active');
-            menuOverlay.style.opacity = isOpen ? '0' : '1';
-            menuOverlay.style.visibility = isOpen ? 'hidden' : 'visible';
-        });
-        mobileLinks.forEach(link => link.addEventListener('click', () => {
+
+        function openMenu() {
+            burgerBtn.classList.add('active');
+            menuOverlay.style.opacity = '1';
+            menuOverlay.style.visibility = 'visible';
+        }
+
+        function closeMenu() {
             burgerBtn.classList.remove('active');
             menuOverlay.style.opacity = '0';
             menuOverlay.style.visibility = 'hidden';
-        }));
+        }
+
+        burgerBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
