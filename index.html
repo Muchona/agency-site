@@ -11,6 +11,13 @@
         #snow-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
         #spotlight { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; background: radial-gradient(circle 300px at var(--x, 0) var(--y, 0), rgba(255,255,255,0.6), transparent 80%); }
         #cursor { width: 10px; height: 10px; background: black; border-radius: 50%; position: fixed; pointer-events: none; z-index: 999; transition: transform 0.15s ease-out; transform: translate(-50%, -50%); }
+
+        /* Mobile Fix: Hide Spotlight/Cursor */
+        @media (max-width: 1024px) {
+            #spotlight, #cursor { display: none !important; }
+            body { cursor: auto !important; }
+        }
+
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
         .luxury-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 2.5rem; padding: 2.5rem; transition: all 0.4s ease; position: relative; z-index: 2; }
@@ -33,16 +40,13 @@
     <nav class="fixed top-0 w-full z-[100] bg-[#F4F4F4]/80 backdrop-blur-xl border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
             <div class="text-xl font-bold tracking-tighter uppercase italic text-black">Aram <span class="font-light text-gray-400">& Partner</span></div>
-            
             <div class="hidden md:flex space-x-12 text-[10px] font-bold uppercase tracking-widest text-gray-400">
                 <a href="#services" class="hover:text-black transition-colors">Services</a>
                 <a href="#work" class="hover:text-black transition-colors">Portfolio</a>
-                <a href="#contact" class="hover:text-black transition-colors">Contact</a>
+                <a href="#blueprint" class="hover:text-black transition-colors">The Blueprint</a>
             </div>
-
             <div class="flex items-center gap-6">
                 <a href="#contact" class="hidden md:block bg-black text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform">Start Blueprint</a>
-                
                 <button id="burger-btn" class="md:hidden flex flex-col justify-center items-end w-8 h-8 space-y-1.5 z-[110] relative">
                     <span class="w-8 h-0.5 bg-black rounded-full"></span>
                     <span class="w-5 h-0.5 bg-black rounded-full"></span>
@@ -53,12 +57,8 @@
 
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-white z-[105] opacity-0 invisible flex flex-col items-center justify-center space-y-10 text-center transition-all duration-500">
         <button id="close-menu-btn" class="absolute top-8 right-8 z-[110] p-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-black">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-black"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
-
         <a href="#services" class="mobile-link text-3xl font-bold tracking-tighter italic">Services</a>
         <a href="#work" class="mobile-link text-3xl font-bold tracking-tighter italic">Portfolio</a>
         <a href="#contact" class="mobile-link text-3xl font-bold tracking-tighter italic">Contact</a>
@@ -128,7 +128,11 @@
 
     <section id="contact" class="max-w-2xl mx-auto px-8 py-40 reveal text-center relative z-10">
         <h2 class="text-6xl font-bold mb-10 tracking-tighter italic">Ready to Build?</h2>
+        
         <form action="https://formspree.io/f/mbddjynj" method="POST" enctype="multipart/form-data" class="space-y-6">
+            
+            <input type="hidden" name="_next" value="https://muchona.github.io/success.html">
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <input type="text" name="name" placeholder="Name" required class="w-full p-6 rounded-3xl bg-white border border-transparent focus:border-black transition-all outline-none text-xs shadow-sm">
                 <input type="email" name="email" placeholder="Email" required class="w-full p-6 rounded-3xl bg-white border border-transparent focus:border-black transition-all outline-none text-xs shadow-sm">
@@ -146,11 +150,6 @@
             </div>
 
             <button type="submit" class="w-full bg-black text-white py-6 rounded-3xl font-bold uppercase tracking-widest text-[10px] hover:scale-[1.02] transition-transform shadow-xl">Send Inquiry</button>
-       <form action="https://formspree.io/f/mbddjynj" method="POST" enctype="multipart/form-data" class="space-y-6">
-    
-    <input type="hidden" name="_next" value="https://muchona.github.io/success.html">
-    
-    </form>
         </form>
     </section>
 
@@ -169,6 +168,7 @@
     </div>
 
     <script>
+        // Snow Engine
         const canvas = document.getElementById('snow-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -195,39 +195,31 @@
         window.addEventListener('resize', initSnow);
         initSnow(); drawSnow();
 
+        // Cursor Logic
         const cursor = document.getElementById('cursor');
         window.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
             document.body.style.setProperty('--x', e.clientX + 'px'); document.body.style.setProperty('--y', e.clientY + 'px');
         });
 
-        // REFINED MOBILE MENU LOGIC WITH CLOSE BUTTON
+        // Navigation
         const burgerBtn = document.getElementById('burger-btn');
         const closeMenuBtn = document.getElementById('close-menu-btn');
         const menuOverlay = document.getElementById('mobile-menu-overlay');
         const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        function openMenu() {
-            burgerBtn.classList.add('active');
-            menuOverlay.style.opacity = '1';
-            menuOverlay.style.visibility = 'visible';
-        }
-
-        function closeMenu() {
-            burgerBtn.classList.remove('active');
-            menuOverlay.style.opacity = '0';
-            menuOverlay.style.visibility = 'hidden';
-        }
-
+        function openMenu() { burgerBtn.classList.add('active'); menuOverlay.style.opacity = '1'; menuOverlay.style.visibility = 'visible'; }
+        function closeMenu() { burgerBtn.classList.remove('active'); menuOverlay.style.opacity = '0'; menuOverlay.style.visibility = 'hidden'; }
         burgerBtn.addEventListener('click', openMenu);
         closeMenuBtn.addEventListener('click', closeMenu);
         mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
+        // Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         
+        // Chat
         const toggle = document.getElementById('chat-toggle');
         const windowDiv = document.getElementById('chat-window');
         const sendBtn = document.getElementById('send-btn');
