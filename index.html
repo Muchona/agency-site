@@ -193,43 +193,6 @@
         </div>
     </div>
 
-    <script>
-        // Chat Toggle Logic
-        const toggle = document.getElementById('chat-toggle');
-        const windowDiv = document.getElementById('chat-window');
-        toggle.addEventListener('click', () => {
-            windowDiv.classList.toggle('hidden');
-        });
-
-        // Simple Front-End Response Logic (Work-Only)
-        const sendBtn = document.getElementById('send-btn');
-        const input = document.getElementById('chat-input');
-        const messages = document.getElementById('chat-messages');
-
-        function appendMessage(text, isUser) {
-            const msg = document.createElement('div');
-            msg.className = isUser ? 'bg-black text-white p-4 rounded-2xl rounded-tr-none ml-12' : 'bg-gray-200/50 p-4 rounded-2xl rounded-tl-none mr-12 text-gray-700';
-            msg.innerText = text;
-            messages.appendChild(msg);
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        sendBtn.addEventListener('click', () => {
-            const val = input.value.trim();
-            if(!val) return;
-            
-            appendMessage(val, true);
-            input.value = '';
-
-            // AI Safety Response
-            setTimeout(() => {
-                if(val.toLowerCase().includes('who are you') || val.toLowerCase().includes('name')) {
-                    appendMessage("I am the Aram & Partner Digital Assistant. I focus on project architecture and luxury design inquiries.", false);
-                } else {
-                    appendMessage("That sounds like a visionary project. I recommend starting your 'Digital Blueprint' via our main button above for a detailed analysis.", false);
-                }
-            }, 800);
-        });
-    </script>
+   That sounds like a visionary project. I recommend starting your 'Digital Blueprint' via our main button above for a detailed analysis.
 </body>
 </html>
