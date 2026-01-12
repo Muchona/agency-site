@@ -11,10 +11,8 @@
         #spotlight { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; background: radial-gradient(circle 250px at var(--x, 0) var(--y, 0), rgba(0,0,0,0.06), transparent 80%); }
         .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .luxury-card { background: white; border-radius: 2.5rem; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.03); transition: all 0.3s ease; }
+        .luxury-card { background: white; border-radius: 2.5rem; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.03); transition: all 0.3s ease; height: 100%; display: flex; flex-direction: column; }
         .luxury-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-        #chat-messages::-webkit-scrollbar { width: 4px; }
-        #chat-messages::-webkit-scrollbar-thumb { background: #eee; border-radius: 10px; }
     </style>
 </head>
 <body class="antialiased">
@@ -35,29 +33,29 @@
     <header class="pt-48 pb-20 px-8 max-w-7xl mx-auto text-center reveal">
         <div class="inline-block px-4 py-1 mb-6 text-[10px] font-bold tracking-widest uppercase bg-white rounded-full text-gray-400 border border-gray-100 shadow-sm">Monaghan, Ireland • Premier AI Agency</div>
         <h1 class="text-6xl md:text-9xl font-bold tracking-tighter leading-none mb-10 italic">Precision <br>Design.</h1>
-        <p class="text-lg text-gray-500 font-light mb-16 max-w-2xl mx-auto leading-relaxed">Where 15 years of world-class service meets the cutting edge of AI automation. We don’t just build websites; we build digital landmarks.</p>
+        <p class="text-lg text-gray-500 font-light mb-16 max-w-2xl mx-auto leading-relaxed">Merging 15 years of world-class service with AI automation.</p>
         <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260" class="w-full h-[550px] object-cover rounded-[3rem] shadow-2xl mb-20">
     </header>
 
     <section id="work" class="max-w-7xl mx-auto px-8 py-20 reveal">
         <h2 class="text-4xl font-bold tracking-tighter italic mb-16">Latest Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-            <div class="luxury-card flex flex-col">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="luxury-card">
                 <img src="https://images.pexels.com/photos/1319461/pexels-photo-1319461.jpeg?auto=compress&cs=tinysrgb&w=800" class="rounded-2xl mb-6 h-48 w-full object-cover">
                 <h3 class="text-xl font-bold mb-2 italic">Grooming Room No. 1</h3>
-                <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-4">Luxury Barber Identity</p>
+                <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-6">Luxury Barber Identity</p>
                 <a href="https://funny-donut-4813c9.netlify.app" target="_blank" class="mt-auto bg-gray-50 text-black py-3 rounded-xl text-center text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition">Live Preview</a>
             </div>
-            <div class="luxury-card flex flex-col">
+            <div class="luxury-card">
                 <div class="rounded-2xl mb-6 overflow-hidden bg-white shadow-inner" style="position: relative; padding-bottom: 60%; height: 0;"><iframe src="https://www.behance.net/embed/project/240092459?ilo0=1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen lazyload frameborder="0"></iframe></div>
                 <h3 class="text-xl font-bold mb-2 italic">NexGen Chat App</h3>
-                <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-4">SaaS UI Design</p>
-                <a href="https://www.behance.net/gallery/240092459/Landing-page-for-Chat-App" target="_blank" class="mt-auto bg-gray-50 text-black py-3 rounded-xl text-center text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition">View Case Study</a>
+                <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-6">SaaS UI Design</p>
+                <a href="https://www.behance.net/gallery/240092459/Landing-page-for-Chat-App" target="_blank" class="mt-auto bg-gray-50 text-black py-3 rounded-xl text-center text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition">View Study</a>
             </div>
-            <div class="luxury-card flex flex-col">
+            <div class="luxury-card">
                 <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&q=80&w=800" class="rounded-2xl mb-6 h-48 w-full object-cover border border-gray-100">
                 <h3 class="text-xl font-bold mb-2 italic">Learning Platform</h3>
-                <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-4">Supply Chain Mastery UI</p>
+                <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-6">Supply Chain Mastery UI</p>
                 <a href="https://author-ripen-65928570.figma.site/" target="_blank" class="mt-auto bg-black text-white py-3 rounded-xl text-center text-[10px] font-bold uppercase tracking-widest hover:bg-gray-800 transition shadow-lg">Explore Figma</a>
             </div>
         </div>
@@ -65,8 +63,7 @@
 
     <section id="blueprint" class="max-w-7xl mx-auto px-8 py-32 bg-black rounded-[4rem] text-white reveal text-center">
         <h2 class="text-5xl font-bold tracking-tighter italic mb-6">The Blueprint</h2>
-        <p class="text-gray-400 mb-20 font-light">Turning ideas into landmarks in 3 steps.</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-20 text-left">
             <div class="bg-[#111] p-10 rounded-[2rem] border border-white/5">
                 <h4 class="text-lg font-bold mb-4 uppercase tracking-tighter italic">01. Discovery</h4>
                 <p class="text-gray-400 text-sm font-light leading-relaxed">Bespoke AI architectures tailored to your vision.</p>
@@ -85,11 +82,60 @@
     <section id="contact" class="max-w-xl mx-auto px-8 py-32 reveal text-center">
         <h2 class="text-4xl font-bold mb-12 tracking-tighter italic">Ready to Build?</h2>
         <form class="space-y-4">
-            <input type="text" placeholder="Name" class="w-full p-4 rounded-xl bg-white border border-gray-100 outline-none focus:border-black transition">
-            <input type="email" placeholder="Email" class="w-full p-4 rounded-xl bg-white border border-gray-100 outline-none focus:border-black transition">
-            <textarea placeholder="Message" rows="3" class="w-full p-4 rounded-xl bg-white border border-gray-100 outline-none focus:border-black transition"></textarea>
-            <button type="submit" class="w-full bg-black text-white py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] hover:bg-gray-800 transition">Send Inquiry</button>
+            <input type="text" placeholder="Name" class="w-full p-4 rounded-xl bg-white border border-gray-100 outline-none">
+            <input type="email" placeholder="Email" class="w-full p-4 rounded-xl bg-white border border-gray-100 outline-none">
+            <textarea placeholder="Message" rows="3" class="w-full p-4 rounded-xl bg-white border border-gray-100 outline-none"></textarea>
+            <button type="submit" class="w-full bg-black text-white py-4 rounded-xl font-bold uppercase tracking-widest text-[10px]">Send Inquiry</button>
         </form>
     </section>
 
     <footer class="py-12 text-center opacity-30 text-[10px] font-bold uppercase tracking-[0.5em]">Aram & Partner • Monaghan • 2026</footer>
+
+    <div id="chat-wrapper" class="fixed bottom-8 right-8 z-[200]">
+        <button id="chat-toggle" class="bg-black text-white p-5 rounded-full shadow-2xl hover:scale-110 transition active:scale-95"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg></button>
+        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 md:w-96 bg-white rounded-[2.5rem] shadow-2xl border border-gray-100 overflow-hidden">
+            <div class="bg-black p-6 text-white text-center"><p class="text-[10px] uppercase tracking-[0.3em] font-bold opacity-60 mb-1">Aram & Partner</p><h4 class="text-lg font-bold italic">Assistant</h4></div>
+            <div id="chat-messages" class="h-56 overflow-y-auto p-6 space-y-4 bg-[#F9F9F9] text-xs">
+                <div class="bg-gray-100 p-4 rounded-2xl rounded-tl-none mr-12 text-gray-700">Hello! I am the Aram & Partner AI. How can I assist today?</div>
+            </div>
+            <div class="p-4 bg-white border-t border-gray-100 flex gap-2">
+                <input type="text" id="chat-input" placeholder="Type here..." class="flex-1 bg-gray-50 p-3 rounded-xl outline-none text-xs">
+                <button id="send-btn" class="bg-black text-white p-3 rounded-xl"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('mousemove', e => { document.body.style.setProperty('--x', e.clientX + 'px'); document.body.style.setProperty('--y', e.clientY + 'px'); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        const toggle = document.getElementById('chat-toggle');
+        const windowDiv = document.getElementById('chat-window');
+        const sendBtn = document.getElementById('send-btn');
+        const input = document.getElementById('chat-input');
+        const messages = document.getElementById('chat-messages');
+        toggle.addEventListener('click', () => { windowDiv.classList.toggle('hidden'); if(!windowDiv.classList.contains('hidden')) input.focus(); });
+        function handleSendMessage() {
+            const val = input.value.trim().toLowerCase();
+            if(!val) return;
+            appendMessage(input.value, true);
+            input.value = '';
+            setTimeout(() => {
+                let response = "That is a great question. Please click 'Start Your Blueprint' for a full analysis.";
+                if(val.includes('who are you')) response = "I am the Aram & Partner Assistant.";
+                else if(val.includes('hello')) response = "Hello! How can I help today?";
+                appendMessage(response, false);
+            }, 600);
+        }
+        function appendMessage(text, isUser) {
+            const msg = document.createElement('div');
+            msg.className = isUser ? 'bg-black text-white p-4 rounded-2xl rounded-tr-none ml-12 mb-4 text-xs' : 'bg-gray-100 p-4 rounded-2xl rounded-tl-none mr-12 text-gray-700 mb-4 text-xs';
+            msg.innerText = text;
+            messages.appendChild(msg);
+            messages.scrollTop = messages.scrollHeight;
+        }
+        sendBtn.addEventListener('click', handleSendMessage);
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSendMessage(); });
+    </script>
+</body>
+</html>
