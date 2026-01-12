@@ -15,7 +15,6 @@
             overflow-x: hidden;
         }
         
-        /* Spotlight Effect */
         #spotlight {
             position: fixed;
             top: 0; left: 0;
@@ -25,7 +24,6 @@
             background: radial-gradient(circle 250px at var(--x, 0) var(--y, 0), rgba(0,0,0,0.06), transparent 80%);
         }
 
-        /* Animations */
         .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -36,7 +34,6 @@
         }
         .luxury-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
         
-        /* Custom Scrollbar for Chat */
         #chat-messages::-webkit-scrollbar { width: 4px; }
         #chat-messages::-webkit-scrollbar-thumb { background: #eee; border-radius: 10px; }
     </style>
@@ -65,3 +62,29 @@
                 </div>
                 <h1 class="text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-8 italic">
                     Precision <br>Design.
+                </h1>
+                <p class="text-lg text-gray-500 font-light mb-10 max-w-lg leading-relaxed">
+                    Merging 15 years of elite service with high-performance AI orchestration. We build luxury websites that command attention.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#blueprint" class="bg-black text-white px-8 py-4 rounded-2xl font-bold text-sm hover:scale-105 transition shadow-lg text-center">Start Your Blueprint</a>
+                    <a href="#work" class="border border-gray-200 px-8 py-4 rounded-2xl font-bold text-sm hover:bg-white transition text-center">View Portfolio</a>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="https://images.pexels.com/photos/3183186/pexels-photo-3183186.jpeg?auto=compress&cs=tinysrgb&w=1260" class="rounded-[2.5rem] shadow-2xl w-full h-[500px] object-cover">
+            </div>
+        </div>
+    </header>
+
+    <section id="work" class="max-w-7xl mx-auto px-8 py-32 reveal">
+        <div class="mb-16">
+            <h2 class="text-4xl font-bold tracking-tighter italic">Latest Projects</h2>
+            <div class="h-1 w-20 bg-black mt-4"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="luxury-card p-8 rounded-[2.5rem] flex flex-col">
+                <img src="https://images.pexels.com/photos/1319461/pexels-photo-1319461.jpeg?auto=compress&cs=tinysrgb&w=800" class="rounded-2xl mb-6 h-56 w-full object-cover">
+                <h3 class="text-xl font-bold mb-2">The Grooming Room No. 1</h3>
+                <p class="text-gray-400 text-[10px] font
