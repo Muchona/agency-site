@@ -18,6 +18,11 @@
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .scroll-track { display: flex; width: 200%; animation: scroll 30s linear infinite; }
         .tech-tag { padding: 0.6rem 1.8rem; border-radius: 99px; font-weight: 800; font-size: 10px; letter-spacing: 0.1em; display: flex; align-items: center; gap: 8px; }
+
+        /* Modern Menu Icon Animation */
+        #burger-btn span { transition: all 0.3s ease-in-out; }
+        #burger-btn.active span:nth-child(1) { transform: translateY(4px) rotate(45deg); width: 24px; }
+        #burger-btn.active span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); width: 24px; }
     </style>
 </head>
 <body class="antialiased">
@@ -28,14 +33,30 @@
     <nav class="fixed top-0 w-full z-[100] bg-[#F4F4F4]/80 backdrop-blur-xl border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
             <div class="text-xl font-bold tracking-tighter uppercase italic text-black">Aram <span class="font-light text-gray-400">& Partner</span></div>
+            
             <div class="hidden md:flex space-x-12 text-[10px] font-bold uppercase tracking-widest text-gray-400">
                 <a href="#services" class="hover:text-black transition-colors">Services</a>
                 <a href="#work" class="hover:text-black transition-colors">Portfolio</a>
-                <a href="#blueprint" class="hover:text-black transition-colors">The Blueprint</a>
+                <a href="#contact" class="hover:text-black transition-colors">Contact</a>
             </div>
-            <a href="#contact" class="bg-black text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform">Start Blueprint</a>
+
+            <div class="flex items-center gap-6">
+                <a href="#contact" class="hidden md:block bg-black text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform">Start Blueprint</a>
+                
+                <button id="burger-btn" class="md:hidden flex flex-col justify-center items-end w-8 h-8 space-y-1.5 z-[110] relative">
+                    <span class="w-8 h-0.5 bg-black rounded-full"></span>
+                    <span class="w-5 h-0.5 bg-black rounded-full"></span>
+                </button>
+            </div>
         </div>
     </nav>
+
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-white z-[105] opacity-0 invisible flex flex-col items-center justify-center space-y-10 text-center transition-all duration-500">
+        <a href="#services" class="mobile-link text-3xl font-bold tracking-tighter italic">Services</a>
+        <a href="#work" class="mobile-link text-3xl font-bold tracking-tighter italic">Portfolio</a>
+        <a href="#contact" class="mobile-link text-3xl font-bold tracking-tighter italic">Contact</a>
+        <a href="#contact" class="mobile-link bg-black text-white px-10 py-4 rounded-2xl text-xs font-bold uppercase tracking-widest">Start Blueprint</a>
+    </div>
 
     <header class="pt-56 pb-20 px-8 max-w-7xl mx-auto reveal relative z-10">
         <div class="flex flex-col md:flex-row items-center gap-16">
@@ -44,14 +65,12 @@
                 <h1 class="text-7xl md:text-9xl font-bold tracking-tighter leading-[0.85] mb-8 italic">Precision <br>Design.</h1>
                 <p class="text-xl text-gray-500 font-light max-w-xl leading-relaxed italic mb-10">Merging 15 years of mastery with high-performance AI orchestration.</p>
                 <div class="flex gap-4">
-                    <a href="#work" class="bg-black text-white px-10 py-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-gray-800 transition shadow-xl">Portfolio</a>
+                    <a href="#work" class="bg-black text-white px-10 py-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest shadow-xl">Portfolio</a>
                     <a href="#contact" class="border border-black text-black px-10 py-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition">Inquire</a>
                 </div>
             </div>
             <div class="md:w-2/5">
-                <div class="relative group">
-                    <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800" class="relative w-full aspect-square object-cover rounded-[3rem] shadow-2xl group-hover:scale-105 transition-transform duration-700">
-                </div>
+                <div class="relative group"><img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800" class="relative w-full aspect-square object-cover rounded-[3rem] shadow-2xl group-hover:scale-105 transition-transform duration-700"></div>
             </div>
         </div>
 
@@ -153,7 +172,7 @@
         }
         function drawSnow() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.35)'; // High visibility snow
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.35)';
             particles.forEach(p => {
                 ctx.beginPath(); ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2); ctx.fill();
                 p.y += p.speed; p.x += Math.sin(p.y / 50) * p.sway;
@@ -169,10 +188,28 @@
             cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
             document.body.style.setProperty('--x', e.clientX + 'px'); document.body.style.setProperty('--y', e.clientY + 'px');
         });
+
+        // REFINED MOBILE MENU LOGIC
+        const burgerBtn = document.getElementById('burger-btn');
+        const menuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        burgerBtn.addEventListener('click', () => {
+            const isOpen = menuOverlay.classList.contains('visible');
+            burgerBtn.classList.toggle('active');
+            menuOverlay.style.opacity = isOpen ? '0' : '1';
+            menuOverlay.style.visibility = isOpen ? 'hidden' : 'visible';
+        });
+        mobileLinks.forEach(link => link.addEventListener('click', () => {
+            burgerBtn.classList.remove('active');
+            menuOverlay.style.opacity = '0';
+            menuOverlay.style.visibility = 'hidden';
+        }));
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        
         const toggle = document.getElementById('chat-toggle');
         const windowDiv = document.getElementById('chat-window');
         const sendBtn = document.getElementById('send-btn');
