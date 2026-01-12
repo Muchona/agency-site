@@ -7,12 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* THE "SNOWING" BLUEPRINT BACKGROUND */
-        @keyframes snowfall {
-            from { background-position: 0 0; }
-            to { background-position: 0 1000px; }
-        }
-
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #F4F4F4; 
@@ -20,11 +14,14 @@
             scroll-behavior: smooth; 
             overflow-x: hidden; 
             cursor: none;
-            /* BIGGER Dotted Grid */
-            background-image: radial-gradient(#000000 1.25px, transparent 1.25px);
-            background-size: 60px 60px;
-            background-attachment: fixed;
-            animation: snowfall 60s linear infinite;
+        }
+        /* Canvas for Snow */
+        #snow-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
         #spotlight { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; background: radial-gradient(circle 300px at var(--x, 0) var(--y, 0), rgba(255,255,255,0.6), transparent 80%); }
@@ -33,12 +30,14 @@
         .reveal.active { opacity: 1; transform: translateY(0); }
         
         .luxury-card { 
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 2.5rem; 
             padding: 2.5rem; 
             transition: all 0.4s ease; 
+            position: relative;
+            z-index: 2;
         }
         .luxury-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.05); background: white; }
 
@@ -48,6 +47,7 @@
     </style>
 </head>
 <body class="antialiased">
+    <canvas id="snow-canvas"></canvas>
     <div id="spotlight"></div>
     <div id="cursor"></div>
 
@@ -57,13 +57,13 @@
             <div class="hidden md:flex space-x-12 text-[10px] font-bold uppercase tracking-widest text-gray-400">
                 <a href="#services" class="hover:text-black transition-colors">Services</a>
                 <a href="#work" class="hover:text-black transition-colors">Portfolio</a>
-                <a href="#contact" class="hover:text-black transition-colors">Contact</a>
+                <a href="#blueprint" class="hover:text-black transition-colors">The Blueprint</a>
             </div>
             <a href="#contact" class="bg-black text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform">Start Blueprint</a>
         </div>
     </nav>
 
-    <header class="pt-56 pb-20 px-8 max-w-7xl mx-auto reveal">
+    <header class="pt-56 pb-20 px-8 max-w-7xl mx-auto reveal relative z-10">
         <div class="flex flex-col md:flex-row items-center gap-16">
             <div class="md:w-3/5 text-left">
                 <div class="inline-block px-4 py-1 mb-8 text-[10px] font-bold tracking-[0.3em] uppercase bg-black text-white rounded-full">Monaghan • Premier AI Agency</div>
@@ -71,12 +71,11 @@
                 <p class="text-xl text-gray-500 font-light max-w-xl leading-relaxed italic mb-10">Merging 15 years of world-class mastery with high-performance AI orchestration.</p>
                 <div class="flex gap-4">
                     <a href="#work" class="bg-black text-white px-10 py-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-gray-800 transition shadow-xl">Portfolio</a>
-                    <a href="#services" class="border border-black text-black px-10 py-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition">Services</a>
+                    <a href="#contact" class="border border-black text-black px-10 py-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition">Inquire</a>
                 </div>
             </div>
             <div class="md:w-2/5">
                 <div class="relative group">
-                    <div class="absolute -inset-6 bg-gradient-to-tr from-gray-200 to-white rounded-[4rem] blur-3xl opacity-30"></div>
                     <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800" 
                          class="relative w-full aspect-square object-cover rounded-[3rem] shadow-2xl group-hover:scale-105 transition-transform duration-700">
                 </div>
@@ -89,24 +88,22 @@
                 <span class="tech-tag bg-green-50 text-green-600">OpenAI</span>
                 <span class="tech-tag bg-orange-50 text-orange-600">Figma</span>
                 <span class="tech-tag bg-purple-50 text-purple-600">Netlify</span>
-                <span class="tech-tag bg-blue-50 text-blue-500">React</span>
                 <span class="tech-tag bg-gray-50 text-black">GitHub</span>
                 <span class="tech-tag bg-blue-50 text-blue-600">Tailwind CSS</span>
                 <span class="tech-tag bg-green-50 text-green-600">OpenAI</span>
                 <span class="tech-tag bg-orange-50 text-orange-600">Figma</span>
                 <span class="tech-tag bg-purple-50 text-purple-600">Netlify</span>
-                <span class="tech-tag bg-blue-50 text-blue-500">React</span>
                 <span class="tech-tag bg-gray-50 text-black">GitHub</span>
             </div>
         </div>
     </header>
 
-    <section id="services" class="max-w-7xl mx-auto px-8 py-40 reveal">
+    <section id="services" class="max-w-7xl mx-auto px-8 py-40 reveal relative z-10">
         <h2 class="text-4xl font-bold tracking-tighter italic mb-16 underline decoration-1 underline-offset-8">Capabilities</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="luxury-card group">
                 <h4 class="text-xl font-bold mb-4 uppercase italic">Builds From 0</h4>
-                <p class="text-gray-500 text-sm leading-relaxed mb-6">Architecting landmarks from the first line of code to the final launch.</p>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6">Architecting landmarks from the first line of code to final launch.</p>
                 <div class="h-1 w-0 bg-black group-hover:w-full transition-all duration-500"></div>
             </div>
             <div class="luxury-card group">
@@ -116,37 +113,52 @@
             </div>
             <div class="luxury-card group">
                 <h4 class="text-xl font-bold mb-4 uppercase italic">AI Chatbots</h4>
-                <p class="text-gray-500 text-sm leading-relaxed mb-6">Intelligent systems to automate and scale your client interactions.</p>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6">Intelligent systems to scale your client interactions.</p>
                 <div class="h-1 w-0 bg-black group-hover:w-full transition-all duration-500"></div>
             </div>
         </div>
     </section>
 
-    <section id="work" class="max-w-7xl mx-auto px-8 py-20 reveal">
-        <h2 class="text-4xl font-bold tracking-tighter italic mb-20">Selected Work</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div class="luxury-card flex flex-col">
-                <img src="https://images.pexels.com/photos/1319461/pexels-photo-1319461.jpeg?auto=compress&cs=tinysrgb&w=800" class="rounded-3xl mb-8 h-64 w-full object-cover">
-                <h3 class="text-xl font-bold mb-2 italic">Grooming Room No. 1</h3>
-                <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-8">Luxury Barber Identity</p>
-                <a href="https://muchona.github.io/grooming-room/" target="_blank" class="mt-auto block w-full py-4 rounded-2xl text-center text-[10px] font-bold uppercase tracking-widest border border-black transition-all duration-300 hover:bg-black hover:text-white">Live Preview</a>
+    <section id="blueprint" class="max-w-7xl mx-auto px-8 py-40 bg-black rounded-[5rem] text-white reveal text-center relative z-20">
+        <h2 class="text-6xl font-bold tracking-tighter italic mb-32">The Blueprint</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-20 text-left px-12">
+            <div class="border-t border-white/10 pt-10">
+                <h4 class="text-lg font-bold mb-6 uppercase tracking-tighter italic">01. Discovery</h4>
+                <p class="text-gray-400 text-sm font-light leading-relaxed">Bespoke AI architectures tailored to your vision.</p>
             </div>
-            <div class="luxury-card flex flex-col">
-                <div class="rounded-3xl mb-8 overflow-hidden h-64 shadow-inner"><iframe src="https://www.behance.net/embed/project/240092459?ilo0=1" class="w-full h-full" allowfullscreen lazyload frameborder="0"></iframe></div>
-                <h3 class="text-xl font-bold mb-2 italic">NexGen Chat App</h3>
-                <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-8">SaaS UI Design</p>
-                <a href="https://www.behance.net/gallery/240092459/Landing-page-for-Chat-App" target="_blank" class="mt-auto block w-full py-4 rounded-2xl text-center text-[10px] font-bold uppercase tracking-widest border border-black transition-all duration-300 hover:bg-black hover:text-white">View Case Study</a>
+            <div class="border-t border-white/10 pt-10">
+                <h4 class="text-lg font-bold mb-6 uppercase tracking-tighter italic">02. Orchestration</h4>
+                <p class="text-gray-400 text-sm font-light leading-relaxed">High-performance code with human-led luxury design.</p>
             </div>
-            <div class="luxury-card flex flex-col">
-                <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&q=80&w=800" class="rounded-3xl mb-8 h-64 w-full object-cover border border-gray-100">
-                <h3 class="text-xl font-bold mb-2 italic">Learning Platform</h3>
-                <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-8">Supply Chain Mastery UI</p>
-                <a href="https://author-ripen-65928570.figma.site/" target="_blank" class="mt-auto block w-full py-4 rounded-2xl text-center text-[10px] font-bold uppercase tracking-widest border border-black transition-all duration-300 hover:bg-black hover:text-white">Explore Figma</a>
+            <div class="border-t border-white/10 pt-10">
+                <h4 class="text-lg font-bold mb-4 uppercase tracking-tighter italic">03. Launch</h4>
+                <p class="text-gray-400 text-sm font-light leading-relaxed">Optimized for search, speed, and massive impact.</p>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="max-w-2xl mx-auto px-8 py-40 reveal text-center">
+    <section id="work" class="max-w-7xl mx-auto px-8 py-40 reveal relative z-10">
+        <h2 class="text-4xl font-bold tracking-tighter italic mb-20">Selected Work</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="luxury-card flex flex-col">
+                <img src="https://images.pexels.com/photos/1319461/pexels-photo-1319461.jpeg?auto=compress&cs=tinysrgb&w=800" class="rounded-3xl mb-8 h-64 w-full object-cover">
+                <h3 class="text-xl font-bold mb-2 italic text-sm">Grooming Room No. 1</h3>
+                <a href="https://muchona.github.io/grooming-room/" target="_blank" class="mt-auto block w-full py-4 rounded-2xl text-center text-[10px] font-bold uppercase tracking-widest border border-black hover:bg-black hover:text-white transition">Live Preview</a>
+            </div>
+            <div class="luxury-card flex flex-col">
+                <div class="rounded-3xl mb-8 overflow-hidden h-64 shadow-inner"><iframe src="https://www.behance.net/embed/project/240092459?ilo0=1" class="w-full h-full" allowfullscreen lazyload frameborder="0"></iframe></div>
+                <h3 class="text-xl font-bold mb-2 italic text-sm">NexGen Chat App</h3>
+                <a href="https://www.behance.net/gallery/240092459/Landing-page-for-Chat-App" target="_blank" class="mt-auto block w-full py-4 rounded-2xl text-center text-[10px] font-bold uppercase tracking-widest border border-black hover:bg-black hover:text-white transition">View Study</a>
+            </div>
+            <div class="luxury-card flex flex-col">
+                <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&q=80&w=800" class="rounded-3xl mb-8 h-64 w-full object-cover border border-gray-100">
+                <h3 class="text-xl font-bold mb-2 italic text-sm">Learning Platform</h3>
+                <a href="https://author-ripen-65928570.figma.site/" target="_blank" class="mt-auto block w-full py-4 rounded-2xl text-center text-[10px] font-bold uppercase tracking-widest border border-black hover:bg-black hover:text-white transition">Explore Figma</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="max-w-2xl mx-auto px-8 py-40 reveal text-center relative z-10">
         <h2 class="text-6xl font-bold mb-10 tracking-tighter italic">Ready to Build?</h2>
         <form action="https://formspree.io/f/mbddjynj" method="POST" class="space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -154,11 +166,11 @@
                 <input type="email" name="email" placeholder="Email" required class="w-full p-6 rounded-3xl bg-white border border-transparent focus:border-black transition-all outline-none text-xs shadow-sm">
             </div>
             <textarea name="message" placeholder="Project Vision" rows="5" required class="w-full p-6 rounded-[2rem] bg-white border border-transparent focus:border-black transition-all outline-none text-xs shadow-sm"></textarea>
-            <button type="submit" class="w-full bg-black text-white py-6 rounded-3xl font-bold uppercase tracking-widest text-[10px] hover:scale-[1.02] transition-transform shadow-xl">Send Inquiry</button>
+            <button type="submit" class="w-full bg-black text-white py-6 rounded-3xl font-bold uppercase tracking-widest text-[10px] hover:scale-[1.02] transition-transform">Send Inquiry</button>
         </form>
     </section>
 
-    <footer class="py-20 text-center opacity-30 text-[10px] font-bold uppercase tracking-[0.8em]">Aram & Partner • Monaghan • 2026</footer>
+    <footer class="py-20 text-center opacity-30 text-[10px] font-bold uppercase tracking-[0.8em] relative z-10">Aram & Partner • Monaghan • 2026</footer>
 
     <div id="chat-wrapper" class="fixed bottom-10 right-10 z-[200]">
         <button id="chat-toggle" class="bg-black text-white p-6 rounded-full shadow-2xl active:scale-90 transition-all"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg></button>
@@ -173,28 +185,58 @@
     </div>
 
     <script>
+        // RANDOM SNOW CANVAS ENGINE
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function initSnow() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            for(let i = 0; i < 150; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 1.5 + 0.5,
+                    speed: Math.random() * 1 + 0.5,
+                    sway: Math.random() * 2 - 1
+                });
+            }
+        }
+        function drawSnow() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fill();
+                p.y += p.speed;
+                p.x += Math.sin(p.y / 50) * p.sway;
+                if(p.y > canvas.height) { p.y = -5; p.x = Math.random() * canvas.width; }
+            });
+            requestAnimationFrame(drawSnow);
+        }
+        window.addEventListener('resize', initSnow);
+        initSnow(); drawSnow();
+
+        // UI SCRIPTS
         const cursor = document.getElementById('cursor');
         window.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            document.body.style.setProperty('--x', e.clientX + 'px');
-            document.body.style.setProperty('--y', e.clientY + 'px');
+            cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+            document.body.style.setProperty('--x', e.clientX + 'px'); document.body.style.setProperty('--y', e.clientY + 'px');
         });
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
         const toggle = document.getElementById('chat-toggle');
         const windowDiv = document.getElementById('chat-window');
         const sendBtn = document.getElementById('send-btn');
         const input = document.getElementById('chat-input');
         const messages = document.getElementById('chat-messages');
-
         toggle.addEventListener('click', () => { windowDiv.classList.toggle('hidden'); if(!windowDiv.classList.contains('hidden')) input.focus(); });
         function handleSendMessage() {
-            const val = input.value.trim().toLowerCase();
+            const val = input.value.trim();
             if(!val) return;
             const userMsg = document.createElement('div');
             userMsg.className = 'bg-black text-white p-4 rounded-3xl rounded-tr-none ml-10 mb-4 text-[10px]';
@@ -205,8 +247,7 @@
                 const resp = document.createElement('div');
                 resp.className = 'bg-gray-100 p-4 rounded-3xl rounded-tl-none mr-10 mb-4 text-gray-700 text-[10px]';
                 resp.innerText = "Understood. I recommend starting your 'Digital Blueprint' for a detailed analysis.";
-                messages.appendChild(resp);
-                messages.scrollTop = messages.scrollHeight;
+                messages.appendChild(resp); messages.scrollTop = messages.scrollHeight;
             }, 600);
         }
         sendBtn.addEventListener('click', handleSendMessage);
