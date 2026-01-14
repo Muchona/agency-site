@@ -12,7 +12,6 @@
         #spotlight { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; background: radial-gradient(circle 300px at var(--x, 0) var(--y, 0), rgba(255,255,255,0.6), transparent 80%); }
         #cursor { width: 10px; height: 10px; background: black; border-radius: 50%; position: fixed; pointer-events: none; z-index: 999; transition: transform 0.15s ease-out; transform: translate(-50%, -50%); }
 
-        /* Mobile Fix: Hide Spotlight/Cursor */
         @media (max-width: 1024px) {
             #spotlight, #cursor { display: none !important; }
             body { cursor: auto !important; }
@@ -26,7 +25,6 @@
         .scroll-track { display: flex; width: 200%; animation: scroll 30s linear infinite; }
         .tech-tag { padding: 0.6rem 1.8rem; border-radius: 99px; font-weight: 800; font-size: 10px; letter-spacing: 0.1em; display: flex; align-items: center; gap: 8px; }
 
-        /* Modern Menu Icon Animation */
         #burger-btn span { transition: all 0.3s ease-in-out; }
         #burger-btn.active span:nth-child(1) { transform: translateY(4px) rotate(45deg); width: 24px; }
         #burger-btn.active span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); width: 24px; }
@@ -120,35 +118,38 @@
     <section id="work" class="max-w-7xl mx-auto px-8 py-40 reveal relative z-10">
         <h2 class="text-4xl font-bold tracking-tighter italic mb-20">Selected Work</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-           <div class="project-card">
-    <div class="image-container">
-        <img src="assets/areva-preview.png" alt="Areva WCS Portal">
-    </div>
-    <h3>Areva WCS™</h3>
-    <p>Next-gen Warehouse Control System with 3D Digital Twin and AI orchestration.</p>
-    <a href="https://areva-automation.vercel.app" class="btn" style="background-color: #A3E635; color: black; border: none;">
-        LIVE PREVIEW
-    </a>
-</div>
-            <div class="luxury-card flex flex-col"><img src="https://images.pexels.com/photos/1319461/pexels-photo-1319461.jpeg?auto=compress&cs=tinysrgb&w=800" class="rounded-3xl mb-8 h-64 w-full object-cover"><h3 class="text-xl font-bold mb-2 italic text-sm">Grooming Room No. 1</h3><a href="https://muchona.github.io/grooming-room/" target="_blank" class="mt-auto block w-full py-4 rounded-2xl text-center text-[10px] font-bold uppercase tracking-widest border border-black hover:bg-black hover:text-white transition">Live Preview</a></div>
-            <div class="luxury-card flex flex-col"><div class="rounded-3xl mb-8 overflow-hidden h-64 shadow-inner"><iframe src="https://www.behance.net/embed/project/240092459?ilo0=1" class="w-full h-full" allowfullscreen lazyload frameborder="0"></iframe></div><h3 class="text-xl font-bold mb-2 italic text-sm">NexGen Chat App</h3><a href="https://www.behance.net/gallery/240092459/Landing-page-for-Chat-App" target="_blank" class="mt-auto block w-full py-4 rounded-2xl text-center text-[10px] font-bold uppercase tracking-widest border border-black hover:bg-black hover:text-white transition">View Study</a></div>
-            <div class="luxury-card flex flex-col"><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&q=80&w=800" class="rounded-3xl mb-8 h-64 w-full object-cover border border-gray-100"><h3 class="text-xl font-bold mb-2 italic text-sm">Learning Platform</h3><a href="https://author-ripen-65928570.figma.site/" target="_blank" class="mt-auto block w-full py-4 rounded-2xl text-center text-[10px] font-bold uppercase tracking-widest border border-black hover:bg-black hover:text-white transition">Explore Figma</a></div>
+            <div class="luxury-card flex flex-col">
+                <img src="assets/areva-preview.png" class="rounded-3xl mb-8 h-64 w-full object-cover border border-gray-100" alt="Areva WCS Portal">
+                <h3 class="text-xl font-bold mb-2 italic text-sm">Areva WCS™</h3>
+                <p class="text-gray-500 text-[10px] leading-relaxed mb-6 italic">Next-gen Warehouse Control System with 3D Digital Twin and AI orchestration.</p>
+                <a href="https://areva-automation.vercel.app" target="_blank" class="mt-auto block w-full py-4 rounded-2xl text-center text-[10px] font-bold uppercase tracking-widest text-black transition hover:opacity-80 shadow-lg" style="background-color: #A3E635;">Live Preview</a>
+            </div>
+
+            <div class="luxury-card flex flex-col">
+                <img src="https://images.pexels.com/photos/1319461/pexels-photo-1319461.jpeg?auto=compress&cs=tinysrgb&w=800" class="rounded-3xl mb-8 h-64 w-full object-cover">
+                <h3 class="text-xl font-bold mb-2 italic text-sm">Grooming Room No. 1</h3>
+                <a href="https://muchona.github.io/grooming-room/" target="_blank" class="mt-auto block w-full py-4 rounded-2xl text-center text-[10px] font-bold uppercase tracking-widest border border-black hover:bg-black hover:text-white transition">Live Preview</a>
+            </div>
+
+            <div class="luxury-card flex flex-col">
+                <div class="rounded-3xl mb-8 overflow-hidden h-64 shadow-inner">
+                    <iframe src="https://www.behance.net/embed/project/240092459?ilo0=1" class="w-full h-full" allowfullscreen lazyload frameborder="0"></iframe>
+                </div>
+                <h3 class="text-xl font-bold mb-2 italic text-sm">NexGen Chat App</h3>
+                <a href="https://www.behance.net/gallery/240092459/Landing-page-for-Chat-App" target="_blank" class="mt-auto block w-full py-4 rounded-2xl text-center text-[10px] font-bold uppercase tracking-widest border border-black hover:bg-black hover:text-white transition">View Study</a>
+            </div>
         </div>
     </section>
 
     <section id="contact" class="max-w-2xl mx-auto px-8 py-40 reveal text-center relative z-10">
         <h2 class="text-6xl font-bold mb-10 tracking-tighter italic">Ready to Build?</h2>
-        
         <form action="https://formspree.io/f/mbddjynj" method="POST" enctype="multipart/form-data" class="space-y-6">
-            
             <input type="hidden" name="_next" value="https://muchona.github.io/success.html">
-            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <input type="text" name="name" placeholder="Name" required class="w-full p-6 rounded-3xl bg-white border border-transparent focus:border-black transition-all outline-none text-xs shadow-sm">
                 <input type="email" name="email" placeholder="Email" required class="w-full p-6 rounded-3xl bg-white border border-transparent focus:border-black transition-all outline-none text-xs shadow-sm">
             </div>
             <textarea name="message" placeholder="Project Vision" rows="5" required class="w-full p-6 rounded-[2rem] bg-white border border-transparent focus:border-black transition-all outline-none text-xs shadow-sm"></textarea>
-            
             <div class="flex items-center justify-center w-full">
                 <label class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-100 border-dashed rounded-[2rem] cursor-pointer bg-white hover:bg-gray-50 transition-colors">
                     <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -158,7 +159,6 @@
                     <input type="file" name="upload" class="hidden" />
                 </label>
             </div>
-
             <button type="submit" class="w-full bg-black text-white py-6 rounded-3xl font-bold uppercase tracking-widest text-[10px] hover:scale-[1.02] transition-transform shadow-xl">Send Inquiry</button>
         </form>
     </section>
@@ -178,7 +178,6 @@
     </div>
 
     <script>
-        // Snow Engine
         const canvas = document.getElementById('snow-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -205,14 +204,12 @@
         window.addEventListener('resize', initSnow);
         initSnow(); drawSnow();
 
-        // Cursor Logic
         const cursor = document.getElementById('cursor');
         window.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
             document.body.style.setProperty('--x', e.clientX + 'px'); document.body.style.setProperty('--y', e.clientY + 'px');
         });
 
-        // Navigation
         const burgerBtn = document.getElementById('burger-btn');
         const closeMenuBtn = document.getElementById('close-menu-btn');
         const menuOverlay = document.getElementById('mobile-menu-overlay');
@@ -223,13 +220,11 @@
         closeMenuBtn.addEventListener('click', closeMenu);
         mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
-        // Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         
-        // Chat
         const toggle = document.getElementById('chat-toggle');
         const windowDiv = document.getElementById('chat-window');
         const sendBtn = document.getElementById('send-btn');
