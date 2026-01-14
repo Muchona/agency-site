@@ -19,7 +19,7 @@
 
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .luxury-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 2.5rem; padding: 2.5rem; transition: all 0.4s ease; position: relative; z-index: 2; }
+        .luxury-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 2.5rem; padding: 2.5rem; transition: all 0.4s ease; position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; }
         .luxury-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.05); background: white; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .scroll-track { display: flex; width: 200%; animation: scroll 30s linear infinite; }
@@ -87,42 +87,19 @@
                 <span class="tech-tag bg-blue-50 text-blue-500">Tailwind CSS</span>
                 <span class="tech-tag bg-green-50 text-green-600">OpenAI</span>
                 <span class="tech-tag bg-orange-50 text-orange-600">Figma</span>
-                <span class="tech-tag bg-blue-600 text-white shadow-lg">Gemini AI</span>
-                <span class="tech-tag bg-white text-blue-600 border border-blue-100">Google AI Studio</span>
-                <span class="tech-tag bg-black text-white italic">Antigravity</span>
-                <span class="tech-tag bg-blue-50 text-blue-500">Tailwind CSS</span>
-                <span class="tech-tag bg-green-50 text-green-600">OpenAI</span>
-                <span class="tech-tag bg-orange-50 text-orange-600">Figma</span>
             </div>
         </div>
     </header>
-
-    <section id="services" class="max-w-7xl mx-auto px-8 py-40 reveal relative z-10">
-        <h2 class="text-4xl font-bold tracking-tighter italic mb-16 underline decoration-1 underline-offset-8">Capabilities</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="luxury-card group"><h4 class="text-xl font-bold mb-4 uppercase italic">Builds From 0</h4><p class="text-gray-500 text-sm leading-relaxed mb-6">Architecting landmarks from the first line of code to final launch.</p><div class="h-1 w-0 bg-black group-hover:w-full transition-all duration-500"></div></div>
-            <div class="luxury-card group"><h4 class="text-xl font-bold mb-4 uppercase italic">Brand Redesign</h4><p class="text-gray-500 text-sm leading-relaxed mb-6">Evolving existing platforms into luxury digital experiences.</p><div class="h-1 w-0 bg-black group-hover:w-full transition-all duration-500"></div></div>
-            <div class="luxury-card group"><h4 class="text-xl font-bold mb-4 uppercase italic">AI Chatbots</h4><p class="text-gray-500 text-sm leading-relaxed mb-6">Intelligent systems to scale your client interactions.</p><div class="h-1 w-0 bg-black group-hover:w-full transition-all duration-500"></div></div>
-        </div>
-    </section>
-
-    <section id="blueprint" class="max-w-7xl mx-auto px-8 py-40 bg-black rounded-[5rem] text-white reveal text-center relative z-20">
-        <h2 class="text-6xl font-bold tracking-tighter italic mb-32">The Blueprint</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-20 text-left px-12">
-            <div class="border-t border-white/10 pt-10"><h4 class="text-lg font-bold mb-6 uppercase tracking-tighter italic">01. Discovery</h4><p class="text-gray-400 text-sm font-light leading-relaxed">Bespoke AI architectures tailored to your vision.</p></div>
-            <div class="border-t border-white/10 pt-10"><h4 class="text-lg font-bold mb-6 uppercase tracking-tighter italic">02. Orchestration</h4><p class="text-gray-400 text-sm font-light leading-relaxed">High-performance code with human-led luxury design.</p></div>
-            <div class="border-t border-white/10 pt-10"><h4 class="text-lg font-bold mb-4 uppercase tracking-tighter italic">03. Launch</h4><p class="text-gray-400 text-sm font-light leading-relaxed">Optimized for search, speed, and massive impact.</p></div>
-        </div>
-    </section>
 
     <section id="work" class="max-w-7xl mx-auto px-8 py-40 reveal relative z-10">
         <h2 class="text-4xl font-bold tracking-tighter italic mb-20">Selected Work</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             
             <div class="luxury-card flex flex-col">
-                <div class="relative mb-8">
-                    <div class="absolute top-0 left-0 w-full h-1 rounded-t-full" style="background-color: #A3E635;"></div>
-                    <img src="assets/areva-preview.png" class="rounded-3xl h-48 w-full object-cover border border-gray-100" alt="Areva WCS Portal">
+                <div class="relative mb-8 h-48 overflow-hidden rounded-3xl border border-gray-100">
+                    <div class="absolute top-0 left-0 w-full h-1 z-10" style="background-color: #A3E635;"></div>
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" 
+                         class="w-full h-full object-cover" alt="Areva WCS Portal">
                 </div>
                 <h3 class="text-lg font-bold mb-2 italic text-sm">Areva WCS™</h3>
                 <p class="text-gray-500 text-[10px] leading-relaxed mb-6 italic">Industrial 3D Digital Twin & AI orchestration.</p>
@@ -151,45 +128,10 @@
                 <p class="text-gray-500 text-[10px] leading-relaxed mb-6 italic">Educational ecosystem design.</p>
                 <a href="https://author-ripen-65928570.figma.site/" target="_blank" class="mt-auto block w-full py-4 rounded-2xl text-center text-[10px] font-bold uppercase tracking-widest border border-black hover:bg-black hover:text-white transition">Explore Figma</a>
             </div>
-
         </div>
-    </section>
-
-    <section id="contact" class="max-w-2xl mx-auto px-8 py-40 reveal text-center relative z-10">
-        <h2 class="text-6xl font-bold mb-10 tracking-tighter italic">Ready to Build?</h2>
-        <form action="https://formspree.io/f/mbddjynj" method="POST" enctype="multipart/form-data" class="space-y-6">
-            <input type="hidden" name="_next" value="https://muchona.github.io/success.html">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input type="text" name="name" placeholder="Name" required class="w-full p-6 rounded-3xl bg-white border border-transparent focus:border-black transition-all outline-none text-xs shadow-sm">
-                <input type="email" name="email" placeholder="Email" required class="w-full p-6 rounded-3xl bg-white border border-transparent focus:border-black transition-all outline-none text-xs shadow-sm">
-            </div>
-            <textarea name="message" placeholder="Project Vision" rows="5" required class="w-full p-6 rounded-[2rem] bg-white border border-transparent focus:border-black transition-all outline-none text-xs shadow-sm"></textarea>
-            <div class="flex items-center justify-center w-full">
-                <label class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-100 border-dashed rounded-[2rem] cursor-pointer bg-white hover:bg-gray-50 transition-colors">
-                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-3 text-gray-400"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.51a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
-                        <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Attach Project Brief (Optional)</p>
-                    </div>
-                    <input type="file" name="upload" class="hidden" />
-                </label>
-            </div>
-            <button type="submit" class="w-full bg-black text-white py-6 rounded-3xl font-bold uppercase tracking-widest text-[10px] hover:scale-[1.02] transition-transform shadow-xl">Send Inquiry</button>
-        </form>
     </section>
 
     <footer class="py-20 text-center opacity-30 text-[10px] font-bold uppercase tracking-[0.8em] relative z-10">Aram & Partner • Monaghan • 2026</footer>
-
-    <div id="chat-wrapper" class="fixed bottom-10 right-10 z-[200]">
-        <button id="chat-toggle" class="bg-black text-white p-6 rounded-full shadow-2xl active:scale-90 transition-all"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg></button>
-        <div id="chat-window" class="hidden absolute bottom-24 right-0 w-80 md:w-96 bg-white rounded-[3rem] shadow-2xl border border-gray-100 overflow-hidden">
-            <div class="bg-black p-8 text-white text-center"><h4 class="text-xs font-bold tracking-widest uppercase italic">Assistant</h4></div>
-            <div id="chat-messages" class="h-64 overflow-y-auto p-8 space-y-6 bg-[#F9F9F9] text-[10px]"></div>
-            <div class="p-6 bg-white border-t border-gray-100 flex gap-4">
-                <input type="text" id="chat-input" placeholder="Type here..." class="flex-1 bg-gray-50 p-4 rounded-2xl text-xs outline-none focus:bg-white transition-colors">
-                <button id="send-btn" class="bg-black text-white p-4 rounded-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button>
-            </div>
-        </div>
-    </div>
 
     <script>
         const canvas = document.getElementById('snow-canvas');
@@ -225,43 +167,13 @@
         });
 
         const burgerBtn = document.getElementById('burger-btn');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
         const menuOverlay = document.getElementById('mobile-menu-overlay');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-        function openMenu() { burgerBtn.classList.add('active'); menuOverlay.style.opacity = '1'; menuOverlay.style.visibility = 'visible'; }
-        function closeMenu() { burgerBtn.classList.remove('active'); menuOverlay.style.opacity = '0'; menuOverlay.style.visibility = 'hidden'; }
-        burgerBtn.addEventListener('click', openMenu);
-        closeMenuBtn.addEventListener('click', closeMenu);
-        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+        burgerBtn.addEventListener('click', () => { burgerBtn.classList.toggle('active'); menuOverlay.style.opacity = menuOverlay.style.opacity === '1' ? '0' : '1'; menuOverlay.style.visibility = menuOverlay.style.visibility === 'visible' ? 'hidden' : 'visible'; });
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        
-        const toggle = document.getElementById('chat-toggle');
-        const windowDiv = document.getElementById('chat-window');
-        const sendBtn = document.getElementById('send-btn');
-        const input = document.getElementById('chat-input');
-        const messages = document.getElementById('chat-messages');
-        toggle.addEventListener('click', () => { windowDiv.classList.toggle('hidden'); if(!windowDiv.classList.contains('hidden')) input.focus(); });
-        function handleSendMessage() {
-            const val = input.value.trim();
-            if(!val) return;
-            const userMsg = document.createElement('div');
-            userMsg.className = 'bg-black text-white p-4 rounded-3xl rounded-tr-none ml-10 mb-4 text-[10px]';
-            userMsg.innerText = input.value;
-            messages.appendChild(userMsg);
-            input.value = '';
-            setTimeout(() => {
-                const resp = document.createElement('div');
-                resp.className = 'bg-gray-100 p-4 rounded-3xl rounded-tl-none mr-10 mb-4 text-gray-700 text-[10px]';
-                resp.innerText = "Understood. I recommend starting your 'Digital Blueprint' for a detailed analysis.";
-                messages.appendChild(resp); messages.scrollTop = messages.scrollHeight;
-            }, 600);
-        }
-        sendBtn.addEventListener('click', handleSendMessage);
-        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSendMessage(); });
     </script>
 </body>
 </html>
