@@ -105,7 +105,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             
             <div class="luxury-card flex flex-col">
-                <div class="relative mb-8 h-48 overflow-hidden rounded-3xl border border-gray-100 bg-gray-50">
+                <div class="relative mb-8 h-48 overflow-hidden rounded-3xl border border-gray-100">
                     <div class="absolute top-0 left-0 w-full h-1 z-10" style="background-color: #A3E635;"></div>
                     <img src="assets/areva-preview.png" class="w-full h-full object-cover" alt="Areva WCS Portal">
                 </div>
@@ -211,8 +211,8 @@
         });
 
         const burgerBtn = document.getElementById('burger-btn');
-        const menuOverlay = document.getElementById('mobile-menu-overlay');
         const closeMenuBtn = document.getElementById('close-menu-btn');
+        const menuOverlay = document.getElementById('mobile-menu-overlay');
         burgerBtn.addEventListener('click', () => { burgerBtn.classList.add('active'); menuOverlay.style.opacity = '1'; menuOverlay.style.visibility = 'visible'; });
         closeMenuBtn.addEventListener('click', () => { burgerBtn.classList.remove('active'); menuOverlay.style.opacity = '0'; menuOverlay.style.visibility = 'hidden'; });
 
@@ -220,7 +220,8 @@
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        
+
+        // Chatbot Logic
         const toggle = document.getElementById('chat-toggle');
         const windowDiv = document.getElementById('chat-window');
         const sendBtn = document.getElementById('send-btn');
