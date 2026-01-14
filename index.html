@@ -87,12 +87,6 @@
                 <span class="tech-tag bg-blue-50 text-blue-500">Tailwind CSS</span>
                 <span class="tech-tag bg-green-50 text-green-600">OpenAI</span>
                 <span class="tech-tag bg-orange-50 text-orange-600">Figma</span>
-                <span class="tech-tag bg-blue-600 text-white shadow-lg">Gemini AI</span>
-                <span class="tech-tag bg-white text-blue-600 border border-blue-100">Google AI Studio</span>
-                <span class="tech-tag bg-black text-white italic">Antigravity</span>
-                <span class="tech-tag bg-blue-50 text-blue-500">Tailwind CSS</span>
-                <span class="tech-tag bg-green-50 text-green-600">OpenAI</span>
-                <span class="tech-tag bg-orange-50 text-orange-600">Figma</span>
             </div>
         </div>
     </header>
@@ -106,21 +100,12 @@
         </div>
     </section>
 
-    <section id="blueprint" class="max-w-7xl mx-auto px-8 py-40 bg-black rounded-[5rem] text-white reveal text-center relative z-20">
-        <h2 class="text-6xl font-bold tracking-tighter italic mb-32">The Blueprint</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-20 text-left px-12">
-            <div class="border-t border-white/10 pt-10"><h4 class="text-lg font-bold mb-6 uppercase tracking-tighter italic">01. Discovery</h4><p class="text-gray-400 text-sm font-light leading-relaxed">Bespoke AI architectures tailored to your vision.</p></div>
-            <div class="border-t border-white/10 pt-10"><h4 class="text-lg font-bold mb-6 uppercase tracking-tighter italic">02. Orchestration</h4><p class="text-gray-400 text-sm font-light leading-relaxed">High-performance code with human-led luxury design.</p></div>
-            <div class="border-t border-white/10 pt-10"><h4 class="text-lg font-bold mb-4 uppercase tracking-tighter italic">03. Launch</h4><p class="text-gray-400 text-sm font-light leading-relaxed">Optimized for search, speed, and massive impact.</p></div>
-        </div>
-    </section>
-
     <section id="work" class="max-w-7xl mx-auto px-8 py-40 reveal relative z-10">
         <h2 class="text-4xl font-bold tracking-tighter italic mb-20">Selected Work</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             
             <div class="luxury-card flex flex-col">
-                <div class="relative mb-8 h-48 overflow-hidden rounded-3xl border border-gray-100">
+                <div class="relative mb-8 h-48 overflow-hidden rounded-3xl border border-gray-100 bg-gray-50">
                     <div class="absolute top-0 left-0 w-full h-1 z-10" style="background-color: #A3E635;"></div>
                     <img src="assets/areva-preview.png" class="w-full h-full object-cover" alt="Areva WCS Portal">
                 </div>
@@ -193,7 +178,6 @@
     </div>
 
     <script>
-        // Snow Effect
         const canvas = document.getElementById('snow-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -220,27 +204,23 @@
         window.addEventListener('resize', initSnow);
         initSnow(); drawSnow();
 
-        // Spotlight/Cursor Movement
         const cursor = document.getElementById('cursor');
         window.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
             document.body.style.setProperty('--x', e.clientX + 'px'); document.body.style.setProperty('--y', e.clientY + 'px');
         });
 
-        // Navigation Menus
         const burgerBtn = document.getElementById('burger-btn');
         const menuOverlay = document.getElementById('mobile-menu-overlay');
         const closeMenuBtn = document.getElementById('close-menu-btn');
         burgerBtn.addEventListener('click', () => { burgerBtn.classList.add('active'); menuOverlay.style.opacity = '1'; menuOverlay.style.visibility = 'visible'; });
         closeMenuBtn.addEventListener('click', () => { burgerBtn.classList.remove('active'); menuOverlay.style.opacity = '0'; menuOverlay.style.visibility = 'hidden'; });
 
-        // Scroll Intersection Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // AI Chatbot
+        
         const toggle = document.getElementById('chat-toggle');
         const windowDiv = document.getElementById('chat-window');
         const sendBtn = document.getElementById('send-btn');
