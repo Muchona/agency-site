@@ -187,7 +187,6 @@
     </div>
 
     <script>
-        // Snow Effect
         const canvas = document.getElementById('snow-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -214,27 +213,23 @@
         window.addEventListener('resize', initSnow);
         initSnow(); drawSnow();
 
-        // Spotlight/Cursor Movement
         const cursor = document.getElementById('cursor');
         window.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
             document.body.style.setProperty('--x', e.clientX + 'px'); document.body.style.setProperty('--y', e.clientY + 'px');
         });
 
-        // Mobile Menu Logic
         const burgerBtn = document.getElementById('burger-btn');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
         const menuOverlay = document.getElementById('mobile-menu-overlay');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
         burgerBtn.addEventListener('click', () => { burgerBtn.classList.add('active'); menuOverlay.style.opacity = '1'; menuOverlay.style.visibility = 'visible'; });
         closeMenuBtn.addEventListener('click', () => { burgerBtn.classList.remove('active'); menuOverlay.style.opacity = '0'; menuOverlay.style.visibility = 'hidden'; });
 
-        // Scroll Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Chatbot Logic
+        
         const toggle = document.getElementById('chat-toggle');
         const windowDiv = document.getElementById('chat-window');
         const sendBtn = document.getElementById('send-btn');
