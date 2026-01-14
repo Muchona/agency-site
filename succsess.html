@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protocol Success | Aram Systems</title>
+    <title>Protocol Active | Aram Systems</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" rel="stylesheet">
     <style>
         body {
@@ -12,25 +12,26 @@
             height: 100vh; display: flex; align-items: center; justify-content: center;
             text-align: center; margin: 0;
         }
-        .glow {
+        .aura-text {
             font-size: clamp(3rem, 10vw, 6rem);
-            letter-spacing: -4px;
-            background: linear-gradient(to right, #3b82f6, #a855f7);
+            letter-spacing: -5px;
+            background: linear-gradient(90deg, #3b82f6, #a855f7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .btn {
-            margin-top: 2rem; display: inline-block; color: white;
-            text-decoration: none; opacity: 0.5; font-size: 0.8rem;
-            letter-spacing: 2px; text-transform: uppercase;
+        .back-link {
+            margin-top: 3rem; display: inline-block; color: white;
+            text-decoration: none; opacity: 0.3; font-size: 0.75rem;
+            letter-spacing: 3px; text-transform: uppercase; transition: 0.3s;
         }
+        .back-link:hover { opacity: 1; color: #3b82f6; }
     </style>
 </head>
 <body>
     <div>
-        <h1 class="glow">TRANSMISSION RECEIVED.</h1>
-        <p>Your Blueprint has been logged in our system.</p>
-        <a href="index.html" class="btn">← Return to Headquarters</a>
+        <h1 class="aura-text">LOGGED.</h1>
+        <p style="opacity: 0.4;">Deployment review in progress.</p>
+        <a href="index.html" class="back-link">← Return to Control Center</a>
     </div>
 </body>
 </html>
