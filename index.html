@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agency | Interactive</title>
+    <title>Aram Agency | Creative Physics</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
@@ -13,11 +14,11 @@
 
     <style>
         :root {
-            --bg: #0a0a0a;
-            --text: #f5f5f5;
+            --bg: #050505;
+            --text: #ffffff;
             --accent: #3b82f6;
             --card-bg: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,126 +28,217 @@
             color: var(--text);
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
-            min-height: 100vh;
+            line-height: 1.5;
         }
 
-        /* Noise texture for depth */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+        /* Texture Overlay */
+        .grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 100;
+            opacity: 0.03; pointer-events: none; z-index: 9999;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            position: relative;
-            z-index: 2;
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; mix-blend-mode: difference;
         }
 
-        header h1 {
-            font-size: clamp(3.5rem, 10vw, 7rem);
-            font-weight: 800;
-            line-height: 0.85;
-            letter-spacing: -0.05em;
-            margin-bottom: 2rem;
-            pointer-events: none; /* Let stickers pass behind text clicks */
-        }
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -1px; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text); text-decoration: none; font-size: 0.9rem; opacity: 0.7; transition: 0.3s; }
+        .nav-links a:hover { opacity: 1; }
 
-        /* Sticker Styles */
-        .sticker {
-            position: absolute;
-            width: 120px;
-            height: 120px;
-            background: var(--accent);
-            border-radius: 20px;
+        /* Main Layout */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 10; }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            font-weight: 800;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            cursor: grab;
-            user-select: none;
-            z-index: 10;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(5px);
+            pointer-events: none; /* Let stickers be clickable behind text */
         }
 
-        .sticker:nth-child(2) { background: #f5f5f5; color: #000; border-radius: 50%; }
-        .sticker:nth-child(3) { background: #ff4d4d; transform: rotate(-10deg); }
-        .sticker:nth-child(4) { background: transparent; border: 2px solid var(--accent); color: var(--accent); }
-        .sticker:nth-child(5) { background: #8b5cf6; border-radius: 40px 10px; }
+        .hero * { pointer-events: auto; }
 
-        .bento-grid {
+        h1 {
+            font-size: clamp(4rem, 12vw, 9rem);
+            font-weight: 800;
+            line-height: 0.8;
+            letter-spacing: -0.06em;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--text);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 800;
+            width: fit-content;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover { transform: scale(1.05); }
+
+        /* Bento Services Grid */
+        .services { padding: 10rem 0; }
+        .grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
-            margin-top: 4rem;
         }
 
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 2rem;
-            transition: all 0.3s ease;
+            border-radius: 32px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            transition: border 0.3s;
         }
 
-        @media (max-width: 968px) {
-            .bento-grid { grid-template-columns: 1fr; }
-            .sticker { display: none; } /* Disable on mobile for better UX */
+        .card:hover { border-color: var(--accent); }
+        .card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .card p { opacity: 0.5; font-weight: 300; }
+        .card-large { grid-column: span 2; }
+
+        /* Contact Section */
+        .contact { padding-bottom: 10rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        
+        form { display: flex; flex-direction: column; gap: 1rem; }
+        input, textarea {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 1.2rem;
+            border-radius: 16px;
+            color: white;
+            font-family: inherit;
+            outline: none;
+        }
+
+        input:focus { border-color: var(--accent); }
+        .submit-btn {
+            background: var(--accent);
+            border: none;
+            padding: 1.2rem;
+            border-radius: 16px;
+            color: white;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        /* Sticker Assets */
+        .sticker-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 5;
+        }
+
+        .sticker {
+            position: absolute;
+            padding: 1rem 2rem;
+            background: var(--accent);
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            cursor: grab;
+            user-select: none;
+            pointer-events: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .s2 { background: #facc15; color: #000; }
+        .s3 { background: #f472b6; }
+        .s4 { background: #000; border: 1px solid #fff; }
+        .s5 { background: #fff; color: #000; border-radius: 10px; transform: rotate(10deg); }
+
+        @media (max-width: 900px) {
+            .grid, .contact { grid-template-columns: 1fr; }
+            .card-large { grid-column: span 1; }
+            .sticker { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div id="canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5;">
-        <div class="sticker" data-vx="2" data-vy="2">3D DESIGN</div>
-        <div class="sticker" data-vx="-2" data-vy="3">AGENCY</div>
-        <div class="sticker" data-vx="3" data-vy="-2">2026</div>
-        <div class="sticker" data-vx="-3" data-vy="-1">CREATIVE</div>
-        <div class="sticker" data-vx="2" data-vy="4">CODE</div>
+    <div class="grain"></div>
+
+    <nav>
+        <div class="logo">ARAM.STUDIO</div>
+        <ul class="nav-links">
+            <li><a href="#work">Work</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="sticker-canvas">
+        <div class="sticker s1" data-vx="2" data-vy="2">3D RENDERING</div>
+        <div class="sticker s2" data-vx="-2" data-vy="3">UI/UX</div>
+        <div class="sticker s3" data-vx="3" data-vy="-2">MOTION</div>
+        <div class="sticker s4" data-vx="-3" data-vy="-1">STRATEGY</div>
+        <div class="sticker s5" data-vx="2" data-vy="4">EST. 2026</div>
     </div>
 
     <div class="container">
-        <header>
-            <h1>Digital<br>Alchemy.</h1>
-            <p style="max-width: 400px; opacity: 0.6;">We turn complex problems into playful digital solutions.</p>
-        </header>
+        
+        <section class="hero">
+            <h1>Making<br>Digital<br>Move.</h1>
+            <a href="#contact" class="cta-button">Start a Project</a>
+        </section>
 
-        <section class="bento-grid">
-            <div class="card" style="grid-column: span 2;">
-                <h3>The Playground</h3>
-                <p>Grab the elements. Throw them. We don't just build sites; we build environments.</p>
-            </div>
-            <div class="card">
-                <h3>UI/UX</h3>
-            </div>
-            <div class="card">
-                <h3>Motion</h3>
+        <section id="services" class="services">
+            <div class="grid">
+                <div class="card card-large">
+                    <h3>Experience Design</h3>
+                    <p>We create digital products that feel as good as they look. Focused on high-conversion and playful interactions.</p>
+                </div>
+                <div class="card">
+                    <h3>3D Visuals</h3>
+                    <p>Bringing depth to the web with interactive 3D assets.</p>
+                </div>
+                <div class="card">
+                    <h3>Branding</h3>
+                    <p>Identity for the next generation.</p>
+                </div>
+                <div class="card card-large">
+                    <h3>Development</h3>
+                    <p>Clean code, fast loading, and zero friction. Optimized for modern SEO and 2026 standards.</p>
+                </div>
             </div>
         </section>
+
+        <section id="contact" class="contact">
+            <div>
+                <h2 style="font-size: 3rem; margin-bottom: 2rem; letter-spacing: -2px;">Ready to work?</h2>
+                <p style="opacity: 0.5;">Tell us about your 3D business or creative project. We respond within 24 hours.</p>
+            </div>
+            <form action="success.html">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <textarea rows="5" placeholder="What's your vision?"></textarea>
+                <button type="submit" class="submit-btn">SEND ENQUIRY</button>
+            </form>
+        </section>
+
     </div>
 
     <script>
         const stickers = document.querySelectorAll('.sticker');
-        const canvas = document.body;
-        
         let activeDraggable = null;
 
         stickers.forEach((sticker) => {
-            // Random initial positions
+            // Initial Random Positions
             gsap.set(sticker, { 
-                x: Math.random() * (window.innerWidth - 150), 
-                y: Math.random() * (window.innerHeight - 150),
-                pointerEvents: 'auto'
+                x: Math.random() * (window.innerWidth - 200), 
+                y: Math.random() * (window.innerHeight - 100)
             });
 
             Draggable.create(sticker, {
@@ -154,56 +246,48 @@
                 onPress: function() {
                     activeDraggable = this.target;
                     gsap.to(this.target, { scale: 1.1, duration: 0.2 });
-                    // Stop velocity while holding
                     this.target.dataset.vx = 0;
                     this.target.dataset.vy = 0;
                 },
                 onRelease: function() {
                     activeDraggable = null;
                     gsap.to(this.target, { scale: 1, duration: 0.2 });
-                    
-                    // Give it some "throw" velocity
-                    this.target.dataset.vx = this.pointerX - this.startX > 0 ? 5 : -5;
-                    this.target.dataset.vy = this.pointerY - this.startY > 0 ? 5 : -5;
+                    // Adding "throw" velocity based on movement
+                    this.target.dataset.vx = (Math.random() - 0.5) * 10;
+                    this.target.dataset.vy = (Math.random() - 0.5) * 10;
                 }
             });
         });
 
-        // Physics Engine Loop
-        function updatePhysics() {
+        function physicsLoop() {
             stickers.forEach(sticker => {
                 if (sticker === activeDraggable) return;
 
                 let vx = parseFloat(sticker.dataset.vx);
                 let vy = parseFloat(sticker.dataset.vy);
-                
                 let x = gsap.getProperty(sticker, "x");
                 let y = gsap.getProperty(sticker, "y");
 
-                // Update position
                 x += vx;
                 y += vy;
 
-                // Boundary Collision Detection
-                const r = sticker.getBoundingClientRect();
-                
-                if (x <= 0 || x + r.width >= window.innerWidth) {
-                    vx *= -1; // Reverse horizontal
+                const bounds = sticker.getBoundingClientRect();
+
+                if (x <= 0 || x + bounds.width >= window.innerWidth) {
+                    vx *= -1;
                     sticker.dataset.vx = vx;
                 }
-                
-                if (y <= 0 || y + r.height >= window.innerHeight) {
-                    vy *= -1; // Reverse vertical
+                if (y <= 0 || y + bounds.height >= window.innerHeight) {
+                    vy *= -1;
                     sticker.dataset.vy = vy;
                 }
 
                 gsap.set(sticker, { x: x, y: y });
             });
-
-            requestAnimationFrame(updatePhysics);
+            requestAnimationFrame(physicsLoop);
         }
 
-        updatePhysics();
+        physicsLoop();
     </script>
 </body>
 </html>
