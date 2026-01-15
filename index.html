@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
     
-    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
         :root {
@@ -38,53 +38,32 @@
             opacity: 0.04; pointer-events: none; z-index: 9999;
         }
 
-        /* --- TECH TRACK SCROLLING --- */
+        /* --- TECH TRACK --- */
         @keyframes scrollMarquee { 
             0% { transform: translateX(0); } 
             100% { transform: translateX(-50%); } 
         }
         .scroll-container { 
-            overflow: hidden; 
-            white-space: nowrap; 
-            padding: 4rem 0; 
-            border-y: 1px solid var(--border);
-            margin-top: 4rem;
+            overflow: hidden; white-space: nowrap; padding: 4rem 0; 
+            border-bottom: 1px solid var(--border); margin-top: 4rem;
         }
-        .scroll-track { 
-            display: inline-flex; 
-            gap: 4rem; 
-            animation: scrollMarquee 30s linear infinite; 
-        }
+        .scroll-track { display: inline-flex; gap: 4rem; animation: scrollMarquee 30s linear infinite; }
         .tech-tag { 
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            padding: 0.8rem 2rem;
-            border-radius: 100px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-family: var(--mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 2px;
+            padding: 0.8rem 2rem; border-radius: 100px; text-transform: uppercase;
+            display: flex; align-items: center; gap: 10px;
         }
 
         /* --- NAV BAR --- */
         nav {
-            position: fixed; top: 0; width: 100%;
-            padding: 1.5rem 4rem;
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 4rem;
             display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(20px);
-            background: rgba(3, 3, 3, 0.7);
+            z-index: 1000; backdrop-filter: blur(20px); background: rgba(3, 3, 3, 0.7);
             border-bottom: 1px solid var(--border);
         }
-
         .logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -1.5px; }
         .nav-links { display: flex; gap: 3rem; list-style: none; }
-        .nav-links a { 
-            color: var(--text); text-decoration: none; font-size: 0.8rem; 
-            text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; transition: 0.3s; 
-        }
+        .nav-links a { color: var(--text); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; transition: 0.3s; }
         .nav-links a:hover { opacity: 1; color: var(--blue); }
 
         /* --- NEON BUTTON --- */
@@ -106,8 +85,7 @@
 
         /* --- SECTIONS --- */
         .blueprint-section {
-            padding: 10rem 0;
-            border-bottom: 1px solid var(--border);
+            padding: 10rem 0; border-bottom: 1px solid var(--border);
             background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
             background-size: 60px 60px;
         }
@@ -130,11 +108,22 @@
         .project-card h3 { font-size: 1.8rem; margin-bottom: 0.8rem; letter-spacing: -1px; }
         .project-card p { opacity: 0.5; font-size: 0.95rem; font-weight: 300; }
 
-        /* --- CONTACT --- */
-        .contact-section { display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; padding: 10rem 0; }
-        form { display: flex; flex-direction: column; gap: 1.2rem; }
-        input, textarea { background: #080808; border: 1px solid var(--border); padding: 1.4rem; border-radius: 16px; color: white; outline: none; transition: 0.3s; }
+        /* --- ENHANCED CONTACT SECTION --- */
+        .contact-section { display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; padding: 15rem 0; opacity: 0; transform: translateY(50px); }
+        form { display: flex; flex-direction: column; gap: 1.5rem; }
+        input, textarea { 
+            background: #080808; border: 1px solid var(--border); padding: 1.4rem; 
+            border-radius: 16px; color: white; outline: none; transition: 0.3s;
+        }
+        input:focus, textarea:focus { border-color: var(--blue); box-shadow: 0 0 20px rgba(59, 130, 246, 0.1); }
         
+        .upload-zone {
+            border: 2px dashed var(--border); padding: 2.5rem; border-radius: 16px;
+            text-align: center; cursor: pointer; color: rgba(255,255,255,0.4); 
+            font-size: 0.8rem; transition: 0.3s; background: rgba(255,255,255,0.01);
+        }
+        .upload-zone:hover { border-color: var(--blue); color: white; background: rgba(59, 130, 246, 0.03); }
+
         @media (max-width: 900px) {
             .work-grid, .contact-section, .bp-grid { grid-template-columns: 1fr; }
             nav { padding: 1.5rem 2rem; }
@@ -243,13 +232,20 @@
         <section id="contact" class="contact-section">
             <div>
                 <h2 style="font-size: 4.5rem; letter-spacing: -4px; line-height: 1;">Ready for<br>Deployment?</h2>
-                <p style="opacity: 0.4; margin-top: 2rem; max-width: 350px;">Initialize the protocol to scale your digital infrastructure.</p>
+                <p style="opacity: 0.4; margin-top: 2rem; max-width: 350px;">Upload your assets or project specifications to initialize the protocol.</p>
             </div>
-            <form action="https://formspree.io/f/mbddjynj" method="POST">
+            
+            <form action="https://formspree.io/f/mbddjynj" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="_next" value="https://muchona.github.io/agency-site/success.html">
                 <input type="text" name="name" placeholder="Authorized Name" required>
                 <input type="email" name="email" placeholder="Business Email" required>
                 <textarea name="message" rows="5" placeholder="System Requirements / Brief..." required></textarea>
+                
+                <label class="upload-zone" for="file-attach">
+                    <span id="file-status">Attach 3D Blueprints / Brief (PDF, ZIP, OBJ)</span>
+                </label>
+                <input type="file" name="upload" id="file-attach" style="display:none;" onchange="document.getElementById('file-status').innerText = this.files[0].name">
+
                 <button type="submit" class="neon-wrap" style="background: none; border: none; padding: 2px; text-align: left;">
                     <div class="neon-inner">INITIALIZE PROTOCOL</div>
                 </button>
@@ -258,11 +254,35 @@
     </div>
 
     <script>
-        // Smooth Reveal Logic
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.style.opacity = 1; });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('section').forEach(el => observer.observe(el));
+        // --- GSAP SCROLL ANIMATION ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to(".contact-section", {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "expo.out",
+            scrollTrigger: {
+                trigger: ".contact-section",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            }
+        });
+
+        // Simple reveal for other sections
+        const sections = document.querySelectorAll('section:not(#contact)');
+        sections.forEach(section => {
+            gsap.from(section, {
+                opacity: 0,
+                y: 30,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                }
+            });
+        });
     </script>
 </body>
 </html>
