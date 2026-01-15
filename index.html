@@ -41,70 +41,79 @@
 
         /* --- STICKY NAV --- */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 1.5rem 4rem;
+            position: fixed; top: 0; width: 100%;
+            padding: 1.5rem 4rem;
             display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; backdrop-filter: blur(20px); background: rgba(3, 3, 3, 0.7);
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(3, 3, 3, 0.7);
             border-bottom: 1px solid var(--border);
         }
-        .logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -1.5px; }
-        .nav-links { display: flex; gap: 3rem; list-style: none; }
-        .nav-links a { color: var(--text); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; transition: 0.3s; }
-        .nav-links a:hover { opacity: 1; color: var(--blue); }
+        .logo { font-weight: 800; font-size: 1.1rem; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); }
+        .nav-links a { color: var(--text); text-decoration: none; font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; transition: 0.3s; }
+        .nav-links a:hover { opacity: 1; }
 
-        /* --- NEON BUTTON --- */
+        /* --- NEON AURA BUTTON --- */
         .neon-wrap {
-            position: relative; padding: 2px; border-radius: 12px;
+            position: relative; padding: 1.5px; border-radius: 8px;
             display: inline-block; overflow: hidden; cursor: pointer; text-decoration: none;
         }
         .neon-wrap::before {
             content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: conic-gradient(transparent, var(--blue), var(--purple), transparent 50%);
-            animation: rotateNeon 3s linear infinite;
+            animation: rotateNeon 4s linear infinite;
         }
         @keyframes rotateNeon { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .neon-inner {
-            position: relative; z-index: 2; background: #000; padding: 0.8rem 2rem;
-            border-radius: 11px; color: white; font-weight: 700; font-size: 0.9rem;
+            position: relative; z-index: 2; background: #000; padding: 0.6rem 1.4rem;
+            border-radius: 7px; color: white; font-weight: 800; font-size: 0.7rem; letter-spacing: 0.5px;
         }
 
         /* --- TECH MARQUEE --- */
-        @keyframes scrollMarquee { 
-            0% { transform: translateX(0); } 
-            100% { transform: translateX(-50%); } 
-        }
-        .scroll-container { 
-            overflow: hidden; white-space: nowrap; padding: 4rem 0; 
-            border-bottom: 1px solid var(--border); margin-top: 4rem;
-        }
-        .scroll-track { display: inline-flex; gap: 6rem; animation: scrollMarquee 30s linear infinite; }
-        .tech-tag { 
-            font-family: var(--mono); font-size: 0.8rem; font-weight: 700; letter-spacing: 4px;
-            color: rgba(255,255,255,0.6); text-transform: uppercase;
-        }
+        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .scroll-container { overflow: hidden; white-space: nowrap; padding: 3rem 0; margin-top: 2rem; border-bottom: 1px solid var(--border); }
+        .scroll-track { display: inline-flex; gap: 5rem; animation: scrollMarquee 40s linear infinite; }
+        .tech-tag { font-family: var(--mono); font-size: 0.75rem; font-weight: 400; letter-spacing: 3px; color: #fff; text-transform: uppercase; }
+
+        /* --- BLUEPRINT SECTION --- */
+        .bp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 4rem; }
+        .bp-card { background: var(--bg); padding: 5rem 3rem; }
+        .bp-num { font-family: var(--mono); color: var(--blue); font-size: 0.75rem; margin-bottom: 1.5rem; display: block; letter-spacing: 2px; }
+        .bp-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.5px; }
+        .bp-card p { opacity: 0.4; font-size: 0.9rem; line-height: 1.6; }
 
         /* --- PORTFOLIO --- */
-        .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; margin: 5rem 0; }
-        .project-card {
-            background: var(--card); border: 1px solid var(--border); border-radius: 28px;
-            padding: 2rem; text-decoration: none; color: white; transition: 0.5s;
-        }
-        .project-card:hover { border-color: var(--blue); transform: translateY(-10px); }
-        .project-visual { width: 100%; aspect-ratio: 16/10; background: #111; border-radius: 18px; margin-bottom: 2rem; overflow: hidden; }
-        .project-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; }
-        .project-card:hover .project-visual img { opacity: 1; transform: scale(1.05); }
+        .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin: 6rem 0; }
+        .project-card { background: transparent; border-radius: 20px; text-decoration: none; color: white; transition: 0.4s; }
+        .project-visual { width: 100%; aspect-ratio: 16/9; background: #0a0a0a; border-radius: 16px; margin-bottom: 1.5rem; overflow: hidden; border: 1px solid var(--border); }
+        .project-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.5s; }
+        .project-card:hover .project-visual img { opacity: 1; transform: scale(1.03); }
+        .project-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .project-card p { opacity: 0.4; font-size: 0.85rem; font-weight: 400; line-height: 1.4; }
 
         /* --- CONTACT --- */
-        .contact-section { display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; padding: 15rem 0; opacity: 0; transform: translateY(50px); }
-        input, textarea { background: #080808; border: 1px solid var(--border); padding: 1.4rem; border-radius: 16px; color: white; outline: none; transition: 0.3s; }
+        .contact-section { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; padding: 12rem 0; opacity: 0; transform: translateY(40px); }
+        .contact-left h2 { font-size: 5.5rem; font-weight: 800; letter-spacing: -3px; line-height: 0.9; margin-bottom: 2rem; }
+        .contact-left p { opacity: 0.4; font-size: 0.95rem; max-width: 340px; }
+        
+        form { display: flex; flex-direction: column; gap: 0.8rem; }
+        input, textarea { background: transparent; border-bottom: 1px solid var(--border); padding: 1.2rem 0; color: white; outline: none; font-size: 0.9rem; transition: 0.3s; }
         input:focus, textarea:focus { border-color: var(--blue); }
         
         .upload-zone {
-            border: 2px dashed var(--border); padding: 2.5rem; border-radius: 16px;
-            text-align: center; cursor: pointer; color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.01); transition: 0.3s;
+            border: 1px dashed var(--border); padding: 2.5rem; border-radius: 12px; margin: 1.5rem 0;
+            text-align: center; cursor: pointer; color: rgba(255,255,255,0.3); font-size: 0.8rem; transition: 0.3s;
         }
         .upload-zone:hover { border-color: var(--blue); color: white; }
 
-        @media (max-width: 900px) { .work-grid, .contact-section { grid-template-columns: 1fr; } nav { padding: 1.5rem 2rem; } .nav-links { display: none; } }
+        @media (max-width: 1024px) { 
+            nav { padding: 1.5rem 2rem; }
+            .nav-links { display: none; }
+            .bp-grid, .work-grid { grid-template-columns: 1fr; }
+            .contact-section { grid-template-columns: 1fr; padding: 8rem 0; }
+            .contact-left h2 { font-size: 4rem; }
+        }
     </style>
 </head>
 <body>
@@ -113,17 +122,18 @@
     <nav>
         <div class="logo">ARAM.SYSTEMS</div>
         <ul class="nav-links">
-            <li><a href="#work">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#blueprint">PROCESS</a></li>
+            <li><a href="#work">PORTFOLIO</a></li>
+            <li><a href="#contact">CONTACT</a></li>
         </ul>
         <a href="#contact" class="neon-wrap">
-            <div class="neon-inner">START PROJECT</div>
+            <div class="neon-inner uppercase">Start Project</div>
         </a>
     </nav>
 
-    <div class="container mx-auto px-8">
-        <section style="padding: 15rem 0 5rem;">
-            <h1 style="font-size: clamp(3.5rem, 12vw, 9.5rem); font-weight: 800; letter-spacing: -0.075em; line-height: 0.82;">
+    <div class="container mx-auto px-8 max-w-7xl">
+        <section style="padding: 16rem 0 4rem;">
+            <h1 style="font-size: clamp(4rem, 11vw, 8.5rem); font-weight: 800; letter-spacing: -0.06em; line-height: 0.85;">
                 Architecting<br><span style="color: var(--blue);">Digital Mastery.</span>
             </h1>
         </section>
@@ -147,8 +157,29 @@
             </div>
         </div>
 
-        <section id="work" style="padding-top: 8rem;">
-            <h2 class="text-6xl font-bold tracking-tighter mb-16">Selected Systems</h2>
+        <section id="blueprint" style="padding-top: 10rem;">
+            <span style="font-family: var(--mono); font-size: 0.7rem; opacity: 0.3; letter-spacing: 4px; display: block; margin-bottom: 2rem;">// CORE_ARCH_01</span>
+            <div class="bp-grid">
+                <div class="bp-card">
+                    <span class="bp-num">01_DISCOVERY</span>
+                    <h3>Strategic Discovery</h3>
+                    <p>We dissect your business model to build a foundation that supports high-level AI interactions and massive traffic.</p>
+                </div>
+                <div class="bp-card">
+                    <span class="bp-num">02_ORCHESTRATION</span>
+                    <h3>Precision Design</h3>
+                    <p>Executive-standard builds using optimized frameworks and immersive 3D spatial orchestration.</p>
+                </div>
+                <div class="bp-card">
+                    <span class="bp-num">03_DEPLOYMENT</span>
+                    <h3>Visual Excellence</h3>
+                    <p>Polishing the user journey with physics, motion, and lighting that defines the premium brand feel.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" style="padding-top: 10rem;">
+            <h2 class="text-4xl font-bold tracking-tight mb-12">Selected Systems</h2>
             <div class="work-grid">
                 <a href="https://areva-automation.vercel.app" target="_blank" class="project-card">
                     <div class="project-visual">
@@ -182,24 +213,24 @@
         </section>
 
         <section id="contact" class="contact-section">
-            <div>
-                <h2 class="text-7xl font-bold tracking-tighter leading-none mb-8">Ready for<br>Deployment?</h2>
-                <p class="opacity-40 max-w-sm">Upload your assets or project specifications to initialize the protocol.</p>
+            <div class="contact-left">
+                <h2>Ready for<br>Deployment?</h2>
+                <p>Upload your assets or project specifications to initialize the protocol.</p>
             </div>
             
             <form action="https://formspree.io/f/mbddjynj" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="_next" value="https://muchona.github.io/agency-site/success.html">
-                <input type="text" name="name" placeholder="Authorized Name" required class="w-full mb-4">
-                <input type="email" name="email" placeholder="Business Email" required class="w-full mb-4">
-                <textarea name="message" rows="5" placeholder="System Requirements / Brief..." required class="w-full mb-4"></textarea>
+                <input type="text" name="name" placeholder="Authorized Name" required>
+                <input type="email" name="email" placeholder="Business Email" required>
+                <textarea name="message" rows="4" placeholder="System Requirements / Brief..." required></textarea>
                 
-                <label class="upload-zone block mb-8" for="file-attach">
+                <label class="upload-zone" for="file-attach">
                     <span id="file-status">Attach 3D Blueprints / Brief (PDF, ZIP, OBJ)</span>
                 </label>
                 <input type="file" name="upload" id="file-attach" class="hidden" onchange="document.getElementById('file-status').innerText = this.files[0].name">
 
-                <button type="submit" class="neon-wrap w-full bg-transparent border-none">
-                    <div class="neon-inner text-center">INITIALIZE PROTOCOL</div>
+                <button type="submit" class="neon-wrap w-fit bg-transparent border-none mt-4">
+                    <div class="neon-inner uppercase font-bold">Initialize Protocol</div>
                 </button>
             </form>
         </section>
@@ -207,12 +238,15 @@
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
+
+        // Animation reveals
         gsap.to(".contact-section", {
             opacity: 1, y: 0, duration: 1.2, ease: "expo.out",
-            scrollTrigger: { trigger: ".contact-section", start: "top 80%" }
+            scrollTrigger: { trigger: ".contact-section", start: "top 85%" }
         });
+
         document.querySelectorAll('section:not(#contact)').forEach(section => {
-            gsap.from(section, { opacity: 0, y: 30, duration: 1, scrollTrigger: { trigger: section, start: "top 85%" } });
+            gsap.from(section, { opacity: 0, y: 30, duration: 1, scrollTrigger: { trigger: section, start: "top 90%" } });
         });
     </script>
 </body>
