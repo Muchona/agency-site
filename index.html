@@ -39,60 +39,35 @@
             opacity: 0.04; pointer-events: none; z-index: 9999;
         }
 
-        /* --- ENHANCED NAV BAR --- */
+        /* --- STICKY NAV --- */
         nav {
-            position: fixed; top: 0; width: 100%;
-            padding: 1.5rem 4rem;
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 4rem;
             display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(20px);
-            background: rgba(3, 3, 3, 0.7);
+            z-index: 1000; backdrop-filter: blur(20px); background: rgba(3, 3, 3, 0.7);
             border-bottom: 1px solid var(--border);
         }
-
         .logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -1.5px; }
         .nav-links { display: flex; gap: 3rem; list-style: none; }
-        .nav-links a { 
-            color: var(--text); text-decoration: none; font-size: 0.8rem; 
-            text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; transition: 0.3s; 
-        }
+        .nav-links a { color: var(--text); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; transition: 0.3s; }
         .nav-links a:hover { opacity: 1; color: var(--blue); }
 
-        /* --- NEON AURA BUTTON --- */
+        /* --- NEON BUTTON --- */
         .neon-wrap {
-            position: relative;
-            padding: 2px;
-            border-radius: 12px;
-            display: inline-block;
-            overflow: hidden;
-            cursor: pointer;
-            text-decoration: none;
+            position: relative; padding: 2px; border-radius: 12px;
+            display: inline-block; overflow: hidden; cursor: pointer; text-decoration: none;
         }
-
         .neon-wrap::before {
-            content: "";
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
+            content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: conic-gradient(transparent, var(--blue), var(--purple), transparent 50%);
             animation: rotateNeon 3s linear infinite;
         }
-
-        @keyframes rotateNeon {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
+        @keyframes rotateNeon { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .neon-inner {
-            position: relative; z-index: 2;
-            background: #000;
-            padding: 0.8rem 2rem;
-            border-radius: 11px;
-            color: white; font-weight: 700; font-size: 0.9rem;
-            display: flex; align-items: center; gap: 10px;
+            position: relative; z-index: 2; background: #000; padding: 0.8rem 2rem;
+            border-radius: 11px; color: white; font-weight: 700; font-size: 0.9rem;
         }
 
-        /* --- TECH TRACK --- */
+        /* --- TECH MARQUEE --- */
         @keyframes scrollMarquee { 
             0% { transform: translateX(0); } 
             100% { transform: translateX(-50%); } 
@@ -101,10 +76,10 @@
             overflow: hidden; white-space: nowrap; padding: 4rem 0; 
             border-bottom: 1px solid var(--border); margin-top: 4rem;
         }
-        .scroll-track { display: inline-flex; gap: 4rem; animation: scrollMarquee 30s linear infinite; }
+        .scroll-track { display: inline-flex; gap: 6rem; animation: scrollMarquee 30s linear infinite; }
         .tech-tag { 
-            font-family: var(--mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 2px;
-            padding: 0.8rem 2rem; border-radius: 100px; text-transform: uppercase;
+            font-family: var(--mono); font-size: 0.8rem; font-weight: 700; letter-spacing: 4px;
+            color: rgba(255,255,255,0.6); text-transform: uppercase;
         }
 
         /* --- PORTFOLIO --- */
@@ -125,15 +100,11 @@
         
         .upload-zone {
             border: 2px dashed var(--border); padding: 2.5rem; border-radius: 16px;
-            text-align: center; cursor: pointer; color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.01);
+            text-align: center; cursor: pointer; color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.01); transition: 0.3s;
         }
         .upload-zone:hover { border-color: var(--blue); color: white; }
 
-        @media (max-width: 900px) { 
-            .work-grid, .contact-section { grid-template-columns: 1fr; } 
-            nav { padding: 1.5rem 2rem; }
-            .nav-links { display: none; }
-        }
+        @media (max-width: 900px) { .work-grid, .contact-section { grid-template-columns: 1fr; } nav { padding: 1.5rem 2rem; } .nav-links { display: none; } }
     </style>
 </head>
 <body>
@@ -142,7 +113,6 @@
     <nav>
         <div class="logo">ARAM.SYSTEMS</div>
         <ul class="nav-links">
-            <li><a href="#blueprint">Process</a></li>
             <li><a href="#work">Portfolio</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -160,25 +130,25 @@
 
         <div class="scroll-container">
             <div class="scroll-track">
-                <span class="tech-tag border border-blue-500/30 text-blue-400">Gemini AI</span>
-                <span class="tech-tag border border-white/20 text-white">Google AI Studio</span>
-                <span class="tech-tag bg-white text-black">Antigravity</span>
-                <span class="tech-tag border border-orange-500/30 text-orange-400">Figma</span>
-                <span class="tech-tag border border-green-500/30 text-green-400">OpenAI</span>
-                <span class="tech-tag border border-white/20 text-white">Vercel</span>
-                <span class="tech-tag border border-blue-400/30 text-blue-300">Netlify</span>
-                <span class="tech-tag border border-blue-500/30 text-blue-400">Gemini AI</span>
-                <span class="tech-tag border border-white/20 text-white">Google AI Studio</span>
-                <span class="tech-tag bg-white text-black">Antigravity</span>
-                <span class="tech-tag border border-orange-500/30 text-orange-400">Figma</span>
-                <span class="tech-tag border border-green-500/30 text-green-400">OpenAI</span>
-                <span class="tech-tag border border-white/20 text-white">Vercel</span>
-                <span class="tech-tag border border-blue-400/30 text-blue-300">Netlify</span>
+                <span class="tech-tag">Vercel</span>
+                <span class="tech-tag">Netlify</span>
+                <span class="tech-tag">Gemini AI</span>
+                <span class="tech-tag">Google AI Studio</span>
+                <span class="tech-tag">Antigravity</span>
+                <span class="tech-tag">Figma</span>
+                <span class="tech-tag">OpenAI</span>
+                <span class="tech-tag">Vercel</span>
+                <span class="tech-tag">Netlify</span>
+                <span class="tech-tag">Gemini AI</span>
+                <span class="tech-tag">Google AI Studio</span>
+                <span class="tech-tag">Antigravity</span>
+                <span class="tech-tag">Figma</span>
+                <span class="tech-tag">OpenAI</span>
             </div>
         </div>
 
         <section id="work" style="padding-top: 8rem;">
-            <h2 class="text-6xl font-bold tracking-tighter mb-16">Selected Work</h2>
+            <h2 class="text-6xl font-bold tracking-tighter mb-16">Selected Systems</h2>
             <div class="work-grid">
                 <a href="https://areva-automation.vercel.app" target="_blank" class="project-card">
                     <div class="project-visual">
